@@ -1,0 +1,7 @@
+{
+  "name": "UVan",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

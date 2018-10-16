@@ -1,0 +1,64 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Cadastro</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form>
+    <ion-item>
+      <ion-label floating>Tipo</ion-label>
+      <ion-select [(ngModel)]="tipoUsuario" name="tipoUsuario">
+        <ion-option value="A">Aluno</ion-option>
+        <ion-option value="C">Condutor</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>E-mail</ion-label>
+      <ion-input type="email" [(ngModel)]="email" name="email" aria-required="true"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Senha</ion-label>
+      <ion-input type="password" [(ngModel)]="senha" name="senha"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Senha Novamente</ion-label>
+      <ion-input type="password" [(ngModel)]="senha2" name="senha2"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Nome Completo</ion-label>
+      <ion-input type="text" [(ngModel)]="nome" name="nome"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Gênero</ion-label>
+      <ion-select [(ngModel)]="genero" name="genero">
+        <ion-input value="F">Feminino</ion-input>
+        <ion-input value="M">Masculino</ion-input>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Data Nascimento</ion-label>
+      <ion-datetime></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>CPF/CNPJ</ion-label>
+      <ion-input type="text" [(ngModel)]="documento" name="documento"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Telefone</ion-label>
+      <ion-input type="text" [(ngModel)]="telefone" name="telefone"></ion-input>
+    </ion-item>
+
+  </form>
+</ion-content>
