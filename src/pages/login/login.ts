@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { CadUsuarioPage } from '../cad-usuario/cad-usuario';
+import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 @IonicPage()
 @Component({

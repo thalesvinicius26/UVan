@@ -11,14 +11,14 @@
   <form (ngSubmit)="login()">
     <ion-item>
       <ion-label floating>E-mail</ion-label>
-      <ion-input type="email" [(ngModel)]="email" name="email" aria-required="true"></ion-input>
+      <ion-input type="email" [(ngModel)]="email" name="email"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Senha</ion-label>
       <ion-input type="password" [(ngModel)]="senha" name="senha"></ion-input>
     </ion-item>
-
+    
     <button ion-button type="submit" round block>Entrar</button>
   </form>
     <button ion-button clear round block (click)="pagCadastro()">Cadastrar</button>
