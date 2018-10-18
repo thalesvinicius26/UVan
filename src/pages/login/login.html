@@ -11,16 +11,17 @@
   <form [formGroup]="loginForm" (ngSubmit)="login()">
     <ion-item>
       <ion-label floating>E-mail</ion-label>
-      <ion-input type="email" [(ngModel)]="email" name="email" formControlName="email" (blur)="validar('email')"></ion-input>
+      <ion-input type="email" [(ngModel)]="email" name="email" formControlName="email" (ionBlur)="validar('email')"></ion-input>
     </ion-item>
     <span *ngIf="erroEmail">{{ msgEmail }}</span>
+
     <ion-item>
       <ion-label floating>Senha</ion-label>
-      <ion-input type="password" [(ngModel)]="senha" name="senha" formControlName="senha" (blur)="validar('senha')"></ion-input>
+      <ion-input type="password" [(ngModel)]="senha" name="senha" formControlName="senha" (ionBlur)="validar('senha')"></ion-input>
     </ion-item>
     <span *ngIf="erroSenha">{{ msgSenha }}</span>
     
-    <button ion-button type="submit" color="secondary" round block>Entrar</button>
+    <button ion-button type="submit" color="secondary" [disabled]="erroEmail || erroSenha" round block>Entrar</button>
   </form>
     <button ion-button clear round block (click)="pagCadastro()">Cadastrar</button>
 </ion-content>

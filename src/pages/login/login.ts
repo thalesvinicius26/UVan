@@ -14,14 +14,18 @@ export class LoginPage {
   private loginForm: any;
   private msgEmail: string;
   private msgSenha: string;
-  private erroEmail: boolean = false;
-  private erroSenha: boolean = false;
+  private erroEmail: boolean = true;
+  private erroSenha: boolean = true;
   private email: string;
   private senha: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder) {
     this.loginForm = formBuilder.group({
-      email: ['', Validators.required],
+      email: ['', Validators.compose([
+        Validators.minLength(5),
+        Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/),
+        Validators.required
+      ])],
       senha: ['', Validators.compose([
         Validators.minLength(6), 
         Validators.maxLength(30), 
@@ -67,9 +71,7 @@ export class LoginPage {
           this.erroEmail = false;
           this.msgEmail = "";
         }
-      }
-
-      if (input == "senha") {
+      } else if (input == "senha") {
         if (!senha.valid) {
           this.erroSenha = true;
           this.msgSenha = "A senha precisa ter de 6 a 30 caracteres";
@@ -78,6 +80,11 @@ export class LoginPage {
           this.msgSenha = "";
         }
       }
+    } else {
+      this.erroEmail = false;
+      this.msgEmail = "";
+      this.erroSenha = false;
+      this.msgSenha = "";
     }
   }
 
