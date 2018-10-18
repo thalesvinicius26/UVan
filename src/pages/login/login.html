@@ -13,7 +13,7 @@
       <ion-label floating>E-mail</ion-label>
       <ion-input type="email" [(ngModel)]="email" name="email" formControlName="email" (ionBlur)="validar('email')"></ion-input>
     </ion-item>
-    <span *ngIf="erroEmail">{{ msgEmail }}</span>
+    <span *ngIf="erroEmail" class="error-message">{{ msgEmail }}</span>
 
     <ion-item>
       <ion-label floating>Senha</ion-label>
