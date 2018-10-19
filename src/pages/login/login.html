@@ -21,7 +21,7 @@
     </ion-item>
     <span *ngIf="erroSenha">{{ msgSenha }}</span>
     
-    <button ion-button type="submit" color="secondary" [disabled]="erroEmail || erroSenha" round block>Entrar</button>
+    <button ion-button type="submit" color="secondary" round block>Entrar</button>
   </form>
     <button ion-button clear round block (click)="pagCadastro()">Cadastrar</button>
 </ion-content>

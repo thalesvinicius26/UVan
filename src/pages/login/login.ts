@@ -14,8 +14,8 @@ export class LoginPage {
   private loginForm: any;
   private msgEmail: string;
   private msgSenha: string;
-  private erroEmail: boolean = true;
-  private erroSenha: boolean = true;
+  private erroEmail: boolean = false;
+  private erroSenha: boolean = false;
   private email: string;
   private senha: string;
 

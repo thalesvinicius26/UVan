@@ -10,13 +10,32 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class CadUsuarioPage {
 
   private cadForm: any;
+  private tipoUsuario: string;
+  private email: string;
   private senha: string;
   private senha2: string;
-  private dtNascimento;
-  private genero;
+  private nome: string;
+  private genero: string;
+  private dtNascimento: string;
+  private documento: string;
+  private telefone: string;
 
-  private erroSenha: boolean;
+  private erroTipoUsuario: boolean = false;
+  private erroEmail: boolean = false;
+  private erroSenha: boolean = false;
+  private erroNome: boolean = false;
+  private erroGenero: boolean = false;
+  private erroDtNasc: boolean = false;
+  private erroDocumento: boolean = false;
+  private erroTelefone: boolean = false;
+  private msgTipoUsuario: string;
+  private msgEmail: string;
   private msgSenha: string;
+  private msgNome: string;
+  private msgGenero: string;
+  private msgDtNasc: string;
+  private msgDocumento: string;
+  private msgTelefone: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder) {
     this.cadForm = formBuilder.group({
@@ -47,11 +66,11 @@ export class CadUsuarioPage {
 
   senhasIguais() {
     if (this.senha != this.senha2) {
+      this.msgSenha = "As senhas estão diferentes";
       this.erroSenha = true;
-      this.msgSenha = "Senhas diferentes";
     } else {
-      this.erroSenha = false;
       this.msgSenha = "";
+      this.erroSenha = false;
     }
   }
 
@@ -108,7 +127,69 @@ export class CadUsuarioPage {
   }
 
   cadastrar() {
+    let { tipoUsuario, email, senha, nome, genero, dtNascimento, documento, telefone } = this.cadForm.controls;
 
+    if (!this.cadForm.valid) {
+      if (!tipoUsuario.valid) {
+        this.erroTipoUsuario = true;
+        this.msgTipoUsuario = "Selecione o tipo de usuário";
+      } else {
+        this.erroTipoUsuario = false;
+        this.msgTipoUsuario = "";
+      }
+      if (!email.valid) {
+        this.erroEmail = true;
+        this.msgEmail = "Email inválido";
+      } else {
+        this.erroEmail = false;
+        this.msgEmail = "";
+      }
+      if (!senha.valid) {
+        this.erroSenha = true;
+        this.msgSenha = "Senha inválida. No mínimo 6 dígitos com letras(maiúsculas e minúsculas), números e caracteres especiais(@#!$%&*+_-)";
+      } else {
+        this.erroSenha = false;
+        this.msgSenha = "";
+      }
+      if (!nome.valid) {
+        this.erroNome = true;
+        this.msgNome = "Informe seu nome completo";
+      } else {
+        this.erroNome = false;
+        this.msgNome = "";
+      }
+      if (!genero.valid) {
+        this.erroGenero = true;
+        this.msgGenero = "Selecione o seu gênero";
+      } else {
+        this.erroGenero = false;
+        this.msgGenero = "";
+      }
+      if (!dtNascimento.valid) {
+        this.erroDtNasc = true;
+        this.msgDtNasc = "Informe sua data de nascimento";
+      } else {
+        this.erroDtNasc = false;
+        this.msgDtNasc = "";
+      }
+      if (!documento.valid) {
+        this.erroDocumento = true;
+        this.msgDocumento = "CPF/CNPJ inválido";
+      } else {
+        this.erroDocumento = false;
+        this.msgDocumento = "";
+      }
+      if (!telefone.valid) {
+        this.erroTelefone = true;
+        this.msgTelefone = "Telefone inválido";
+      } else {
+        this.erroTelefone = false;
+        this.msgTelefone = "";
+      }
+      
+    } else {
+      alert("Cadastrado!");
+    }
   }
   
   ionViewDidLoad() {
