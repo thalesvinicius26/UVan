@@ -11,16 +11,27 @@
   <form [formGroup]="loginForm" (ngSubmit)="login()">
     <ion-item>
       <ion-label floating>E-mail</ion-label>
-      <ion-input type="email" [(ngModel)]="email" name="email" formControlName="email" (ionBlur)="validar('email')"></ion-input>
+      <ion-input type="email" [(ngModel)]="email" name="email" formControlName="email"></ion-input>
     </ion-item>
-    <span *ngIf="erroEmail" class="error-message">{{ msgEmail }}</span>
+    <div *ngIf="!loginForm.controls.email.valid && (loginForm.controls.email.dirty || loginForm.controls.email.touched)">
+      <span class="error" [hidden]="!loginForm.controls.email.errors.required">
+        O email é obrigatório
+      </span>
+      <span class="error" [hidden]="!loginForm.controls.email.errors.pattern">
+        O email digitado é inválido
+      </span>
+    </div>
 
     <ion-item>
       <ion-label floating>Senha</ion-label>
-      <ion-input type="password" [(ngModel)]="senha" name="senha" formControlName="senha" (ionBlur)="validar('senha')"></ion-input>
+      <ion-input type="password" [(ngModel)]="senha" name="senha" formControlName="senha"></ion-input>
     </ion-item>
-    <span *ngIf="erroSenha">{{ msgSenha }}</span>
-    
+    <div *ngIf="!loginForm.controls.senha.valid && (loginForm.controls.senha.dirty || loginForm.controls.senha.touched)">
+      <span class="error" [hidden]="!loginForm.controls.senha.errors.required">
+        A senha é obrigatória
+      </span>
+    </div>
+
     <button ion-button type="submit" color="secondary" round block>Entrar</button>
   </form>
     <button ion-button clear round block (click)="pagCadastro()">Cadastrar</button>

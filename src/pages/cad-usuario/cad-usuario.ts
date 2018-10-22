@@ -59,9 +59,27 @@ export class CadUsuarioPage {
       ])],
       genero: ['', Validators.required],
       dtNascimento: ['', Validators.required],
-      documento: ['', Validators.required],
-      telefone: ['', Validators.required]
+      documento: ['', Validators.compose([
+        Validators.minLength(14),
+        Validators.maxLength(16),
+        Validators.required
+      ])],
+      telefone: ['', Validators.compose([
+        Validators.minLength(14),
+        Validators.maxLength(15),
+        Validators.required
+      ])]
     });
+  }
+
+  cadastrar() {
+    if (!this.cadForm.valid) {
+      this.validar();
+    } else {
+      alert("Cadastrado!");
+      //aqui fazer nav push para outra tela de acordo com o tipo do usuário
+      this.navCtrl.pop();
+    }
   }
 
   senhasIguais() {
@@ -74,59 +92,7 @@ export class CadUsuarioPage {
     }
   }
 
-  validar(input: string) {
-    let { tipoUsuario, email, senha, nome, genero, dtNascimento, documento, telefone } = this.cadForm.controls;
-
-    if (!this.cadForm.valid) {
-      
-      if (input == "tipoUsuario") {
-        if (!tipoUsuario.valid) {
-        } else {
-        }
-      } else if (input == "email") {
-        if (!email.valid) {
-        } else {
-        }
-      } else if (input == "senha") {
-        if (!senha.valid) {
-          this.erroSenha = true;
-          this.msgSenha = "Senha inválida. No mínimo 6 dígitos com letras(maiúsculas e minúsculas), números e caracteres especiais(@#!$%&*+_-)";
-        } else {
-          this.erroSenha = false;
-          this.msgSenha = "";
-        }
-      } else if (input == "nome") {
-        if (!nome.valid) {
-        } else {
-        }
-      } else if (input == "genero") {
-        if (!genero.valid) {
-        } else {
-        }
-      } else if (input == "dtNascimento") {
-        if (!dtNascimento.valid) {
-        } else {
-        }
-      } else if (input == "documento") {
-        if (!documento.valid) {
-        } else {
-        }
-      } else if (input == "telefone") {
-        if (!telefone.valid) {
-        } else {
-        }
-      }
-    } else {
-      this.erroSenha = false;
-      this.msgSenha = "";
-    }
-  }
-
-  teste() {
-    console.log(this.genero);
-  }
-
-  cadastrar() {
+  validar() {
     let { tipoUsuario, email, senha, nome, genero, dtNascimento, documento, telefone } = this.cadForm.controls;
 
     if (!this.cadForm.valid) {
@@ -138,6 +104,7 @@ export class CadUsuarioPage {
         this.msgTipoUsuario = "";
       }
       if (!email.valid) {
+        
         this.erroEmail = true;
         this.msgEmail = "Email inválido";
       } else {
@@ -153,14 +120,14 @@ export class CadUsuarioPage {
       }
       if (!nome.valid) {
         this.erroNome = true;
-        this.msgNome = "Informe seu nome completo";
+        this.msgNome = "Informe o seu nome completo";
       } else {
         this.erroNome = false;
         this.msgNome = "";
       }
       if (!genero.valid) {
         this.erroGenero = true;
-        this.msgGenero = "Selecione o seu gênero";
+        this.msgGenero = "Selecione seu gênero";
       } else {
         this.erroGenero = false;
         this.msgGenero = "";
@@ -186,9 +153,23 @@ export class CadUsuarioPage {
         this.erroTelefone = false;
         this.msgTelefone = "";
       }
-      
     } else {
-      alert("Cadastrado!");
+      this.erroTipoUsuario = false;
+      this.msgTipoUsuario = "";
+      this.erroEmail = false;
+      this.msgEmail = "";
+      this.erroSenha = false;
+      this.msgSenha = "";
+      this.erroNome = false;
+      this.msgNome = "";
+      this.erroGenero = false;
+      this.msgGenero = "";
+      this.erroDtNasc = false;
+      this.msgDtNasc = "";
+      this.erroDocumento = false;
+      this.msgDocumento = "";
+      this.erroTelefone = false;
+      this.msgTelefone = "";
     }
   }
   
