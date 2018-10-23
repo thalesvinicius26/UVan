@@ -4,7 +4,7 @@ import { CadUsuarioPage } from './cad-usuario';
 
 @NgModule({
   declarations: [
-    CadUsuarioPage,
+    CadUsuarioPage
   ],
   imports: [
     IonicPageModule.forChild(CadUsuarioPage),

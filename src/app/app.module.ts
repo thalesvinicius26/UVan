@@ -10,13 +10,18 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { CadUsuarioPage } from '../pages/cad-usuario/cad-usuario';
-
+import { CadMotoristaPage } from '../pages/cad-motorista/cad-motorista';
+import { CadEnderecoPage } from '../pages/cad-endereco/cad-endereco';
+import { CadAlunoPage } from '../pages/cad-aluno/cad-aluno';
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     LoginPage,
-    CadUsuarioPage
+    CadUsuarioPage,
+    CadMotoristaPage,
+    CadEnderecoPage,
+    CadAlunoPage
   ],
   imports: [
     BrowserModule,
@@ -28,7 +33,10 @@ import { CadUsuarioPage } from '../pages/cad-usuario/cad-usuario';
     MyApp,
     HomePage,
     LoginPage,
-    CadUsuarioPage
+    CadUsuarioPage,
+    CadMotoristaPage,
+    CadEnderecoPage,
+    CadAlunoPage
   ],
   providers: [
     StatusBar,

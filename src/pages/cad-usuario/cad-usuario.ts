@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, Validators } from '@angular/forms';
 
+import { CadMotoristaPage } from '../cad-motorista/cad-motorista';
+
 @IonicPage()
 @Component({
   selector: 'page-cad-usuario',
@@ -48,7 +50,6 @@ export class CadUsuarioPage {
       senha: ['', Validators.compose([
         Validators.minLength(6),
         Validators.maxLength(30),
-        //Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$/),
         Validators.pattern(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#!$%&*+-_])[a-zA-Z0-9 @#!$%&*+-_]*$/),
         Validators.required
       ])],
@@ -76,9 +77,9 @@ export class CadUsuarioPage {
     if (!this.cadForm.valid) {
       this.validar();
     } else {
-      alert("Cadastrado!");
+      //alert("Cadastrado!");
       //aqui fazer nav push para outra tela de acordo com o tipo do usuário
-      this.navCtrl.pop();
+      this.navCtrl.push(CadMotoristaPage);
     }
   }
 
@@ -171,10 +172,6 @@ export class CadUsuarioPage {
       this.erroTelefone = false;
       this.msgTelefone = "";
     }
-  }
-  
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CadUsuarioPage');
   }
 
 }

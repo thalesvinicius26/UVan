@@ -12,10 +12,6 @@ import { CadUsuarioPage } from '../cad-usuario/cad-usuario';
 export class LoginPage {
 
   private loginForm: any;
-  private msgEmail: string;
-  private msgSenha: string;
-  private erroEmail: boolean = false;
-  private erroSenha: boolean = false;
   private email: string;
   private senha: string;
 
@@ -30,47 +26,15 @@ export class LoginPage {
   }
 
   login() {
-    if (!this.loginForm.valid) {
-      this.validar();
-    } else {
+    if (this.loginForm.valid) {
       alert("Login Realizado");
     }
     
     console.log(this.email, this.senha);
   }
 
-  validar() {
-    let { email, senha } = this.loginForm.controls;
-
-    if (!this.loginForm.valid) {
-      if (!email.valid) {
-        this.erroEmail = true;
-        this.msgEmail = "Email inválido";
-      } else {
-        this.erroEmail = false;
-        this.msgEmail = "";
-      }
-      if (!senha.valid) {
-        this.erroSenha = true;
-        this.msgSenha = "Senha inválida";
-      } else {
-        this.erroSenha = false;
-        this.msgSenha = "";
-      }
-    } else {
-      this.erroEmail = false;
-      this.msgEmail = "";
-      this.erroSenha = false;
-      this.msgSenha = "";
-    }
-  }
-
   pagCadastro() {
     this.navCtrl.push(CadUsuarioPage);
+    //this.navCtrl.setRoot(CadUsuarioPage);
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
-  }
-
 }
