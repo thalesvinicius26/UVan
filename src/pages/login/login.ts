@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Config, LoadingController } from 'ionic-angular';
 import { Validators, FormBuilder } from '@angular/forms';
 
 import { AutenticacaoProvider } from '../../providers/autenticacao/autenticacao';
@@ -17,7 +17,7 @@ export class LoginPage {
   private email: string;
   private senha: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public auth: AutenticacaoProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public auth: AutenticacaoProvider, public loadingCtrl: LoadingController) {
     this.loginForm = formBuilder.group({
       email: ['', Validators.compose([
         Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/),
@@ -25,14 +25,18 @@ export class LoginPage {
       ])],
       senha: ['', Validators.required]
     });
+
+    this.auth.getData().subscribe(
+      (data: Config) => this.usuario = {...data},
+      err => console.log(err)
+    ); 
+
+    this.email = this.navParams.get("email");
   }
 
   login() {
     if (this.loginForm.valid) {
-      this.auth.getData().subscribe(
-        data => this.usuario = data,
-        err => console.log(err)
-      );
+      //this.usuario = this.auth.getData();
       alert("Login Realizado");
     }
     
@@ -40,7 +44,7 @@ export class LoginPage {
   }
 
   pagCadastro() {
-    this.navCtrl.push(CadUsuarioPage);
+      this.navCtrl.push(CadUsuarioPage);
     //this.navCtrl.setRoot(CadUsuarioPage);
   }
 }

@@ -3,6 +3,8 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 
 import { BrMaskerModule } from 'brmasker-ionic-3';
 
@@ -13,6 +15,7 @@ import { CadUsuarioPage } from '../pages/cad-usuario/cad-usuario';
 import { CadMotoristaPage } from '../pages/cad-motorista/cad-motorista';
 import { CadEnderecoPage } from '../pages/cad-endereco/cad-endereco';
 import { CadAlunoPage } from '../pages/cad-aluno/cad-aluno';
+import { CadVeiculoPage } from '../pages/cad-veiculo/cad-veiculo';
 import { AutenticacaoProvider } from '../providers/autenticacao/autenticacao';
 @NgModule({
   declarations: [
@@ -22,12 +25,15 @@ import { AutenticacaoProvider } from '../providers/autenticacao/autenticacao';
     CadUsuarioPage,
     CadMotoristaPage,
     CadEnderecoPage,
-    CadAlunoPage
+    CadAlunoPage,
+    CadVeiculoPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    BrMaskerModule
+    BrMaskerModule,
+    HttpClientModule,
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -37,7 +43,8 @@ import { AutenticacaoProvider } from '../providers/autenticacao/autenticacao';
     CadUsuarioPage,
     CadMotoristaPage,
     CadEnderecoPage,
-    CadAlunoPage
+    CadAlunoPage,
+    CadVeiculoPage
   ],
   providers: [
     StatusBar,

@@ -46,9 +46,8 @@
   <button ion-button (click)="pagCadastro()" clear block>Cadastre-se</button>
 
 <ion-card>
-  <ion-card-content *ngFor="let user of usuario">
-    <h2>{{ user.email }}</h2>
-    <p>{{ user.nome }}</p>
+  <ion-card-content>
+    <h2>{{ usuario | json }}</h2>
   </ion-card-content>
 </ion-card>
 </ion-content>

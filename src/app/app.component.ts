@@ -9,6 +9,7 @@ import { CadEnderecoPage } from '../pages/cad-endereco/cad-endereco';
 import { CadMotoristaPage } from '../pages/cad-motorista/cad-motorista';
 import { CadAlunoPage } from '../pages/cad-aluno/cad-aluno';
 import { CadUsuarioPage } from '../pages/cad-usuario/cad-usuario';
+import { CadVeiculoPage } from '../pages/cad-veiculo/cad-veiculo';
 @Component({
   templateUrl: 'app.html'
 })
@@ -32,7 +33,8 @@ export class MyApp {
       {title: 'Cadastro', component: CadUsuarioPage},
       {title: 'Endereço', component: CadEnderecoPage},
       {title: 'Motorista', component: CadMotoristaPage},
-      {title: 'Aluno', component: CadAlunoPage}
+      {title: 'Aluno', component: CadAlunoPage},
+      {title: 'Veículo', component: CadVeiculoPage}
     ]
 
     platform.ready().then(() => {

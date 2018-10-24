@@ -8,42 +8,55 @@
 
 
 <ion-content padding>
-  <ion-card>
-    <ion-card-header>
-      Cadastre seu endereço:
-    </ion-card-header>
-    <ion-card-content>
-      <ion-item>
-        <ion-label floating>CEP</ion-label>
-        <ion-input type="text" [brmasker]="{mask:'00000-000', len: 9}"></ion-input>
-      </ion-item>
+  <form (ngSubmit)="proxForm()">
+    <ion-card>
+      <ion-card-header>
+        Cadastre seu endereço:
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label floating>CEP</ion-label>
+          <ion-input type="text" [(ngModel)]="endereco.cep" name="endereco.cep" [brmasker]="{mask:'00000-000', len: 9}"></ion-input>
+        </ion-item>
 
-      <ion-item>
-        <ion-label floating>UF</ion-label>
-        <ion-select [(ngModel)]="uf">
-          <ion-option value="SP">SP</ion-option>
-        </ion-select>
-      </ion-item>
+        <ion-item>
+          <ion-label floating>UF</ion-label>
+          <ion-select [(ngModel)]="endereco.uf" name="endereco.uf">
+            <ion-option value="SP">SP</ion-option>
+          </ion-select>
+        </ion-item>
 
-      <ion-item>
-        <ion-label floating>Cidade</ion-label>
-        <ion-input type="text"></ion-input>
-      </ion-item>
+        <ion-item>
+          <ion-label floating>Cidade</ion-label>
+          <ion-input type="text" [(ngModel)]="endereco.cidade" name="endereco.cidade"></ion-input>
+        </ion-item>
 
-      <ion-item>
-        <ion-label floating>Bairro</ion-label>
-        <ion-input type="text"></ion-input>
-      </ion-item>
+        <ion-item>
+          <ion-label floating>Bairro</ion-label>
+          <ion-input type="text" [(ngModel)]="endereco.bairro" name="endereco.bairro"></ion-input>
+        </ion-item>
 
-      <ion-item>
-        <ion-label floating>Rua</ion-label>
-        <ion-input type="number"></ion-input>
-      </ion-item>
+        <ion-item>
+          <ion-label floating>Rua</ion-label>
+          <ion-input type="text" [(ngModel)]="endereco.rua" name="endereco.rua"></ion-input>
+        </ion-item>
 
-      <ion-item>
-        <ion-label floating>Complemento</ion-label>
-        <ion-textarea></ion-textarea>
-      </ion-item>
-    </ion-card-content>
-  </ion-card>
+        <ion-item>
+            <ion-label floating>Número</ion-label>
+            <ion-input type="number" [(ngModel)]="endereco.numero" name="endereco.numero"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Complemento</ion-label>
+          <ion-textarea [(ngModel)]="endereco.complemento" name="endereco.complemento"></ion-textarea>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <div text-right>
+        <button ion-button icon-only>
+              <ion-icon name="add"></ion-icon>
+        </button>
+      </div>
+  </form>
 </ion-content>

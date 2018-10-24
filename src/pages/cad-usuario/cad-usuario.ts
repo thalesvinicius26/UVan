@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { FormBuilder, Validators } from '@angular/forms';
 
-import { CadMotoristaPage } from '../cad-motorista/cad-motorista';
+import { AutenticacaoProvider } from '../../providers/autenticacao/autenticacao';
+import { CadEnderecoPage } from '../cad-endereco/cad-endereco';
 
 @IonicPage()
 @Component({
@@ -12,16 +13,9 @@ import { CadMotoristaPage } from '../cad-motorista/cad-motorista';
 export class CadUsuarioPage {
 
   private cadForm: any;
-  private tipoUsuario: string;
-  private email: string;
-  private senha: string;
-  private senha2: string;
-  private nome: string;
-  private genero: string;
-  private dtNascimento: string;
-  private documento: string;
-  private telefone: string;
+  private usuario: any = {};
 
+  private nome: string;
   private erroTipoUsuario: boolean = false;
   private erroEmail: boolean = false;
   private erroSenha: boolean = false;
@@ -39,7 +33,7 @@ export class CadUsuarioPage {
   private msgDocumento: string;
   private msgTelefone: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public auth: AutenticacaoProvider, public loadingCtrl: LoadingController) {
     this.cadForm = formBuilder.group({
       tipoUsuario: ['', Validators.required],
       email: ['', Validators.compose([
@@ -71,20 +65,45 @@ export class CadUsuarioPage {
         Validators.required
       ])]
     });
+
+    this.usuario.tipo = this.navParams.get("usuario.tipo");
+    this.usuario.email = this.navParams.get("usuario.email");
+    this.usuario.senha = this.navParams.get("usuario.senha");
+    this.usuario.senha2 = this.navParams.get("usuario.senha2");
+    this.usuario.nome = this.navParams.get("usuario.nome");
+    this.usuario.genero = this.navParams.get("usuario.genero");
+    this.usuario.dtNascimento = this.navParams.get("usuario.dtNascimento");
+    this.usuario.documento = this.navParams.get("usuario.documento");
+    this.usuario.telefone = this.navParams.get("usuario.telefone");
   }
 
-  cadastrar() {
+  proxForm() {
     if (!this.cadForm.valid) {
       this.validar();
     } else {
+      /*this.auth.postData(this.cadForm.value).subscribe( 
+        data => console.log(data),
+        err => console.log(err)
+      );*/
       //alert("Cadastrado!");
       //aqui fazer nav push para outra tela de acordo com o tipo do usuário
-      this.navCtrl.push(CadMotoristaPage);
+      let loader = this.loadingCtrl.create({
+        content: "Carregando"
+      });
+  
+      loader.present();
+  
+      setTimeout(() => {
+        this.navCtrl.push(CadEnderecoPage, {
+          usuario: this.usuario
+        });
+        loader.dismiss();
+      }, 1000);
     }
   }
 
   senhasIguais() {
-    if (this.senha != this.senha2) {
+    if (this.usuario.senha != this.usuario.senha2) {
       this.msgSenha = "As senhas estão diferentes";
       this.erroSenha = true;
     } else {

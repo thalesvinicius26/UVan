@@ -8,7 +8,7 @@
 
 
 <ion-content padding>
-  <<form [formGroup]="cadForm">
+  <form [formGroup]="cadForm" (ngSubmit)="proxForm()">
     <ion-card>
       <ion-card-header>
         Tipo de Usuário:
@@ -16,7 +16,7 @@
       <ion-card-content>
         <ion-item>
           <ion-label floating>Tipo</ion-label>
-          <ion-select [(ngModel)]="tipoUsuario" name="tipoUsuario" formControlName="tipoUsuario" focus>
+          <ion-select [(ngModel)]="usuario.tipo" name="tipoUsuario" formControlName="tipoUsuario">
             <ion-option value="A">Aluno</ion-option>
             <ion-option value="C">Condutor</ion-option>
           </ion-select>
@@ -32,18 +32,18 @@
       <ion-card-content>
         <ion-item>
           <ion-label floating>E-mail</ion-label>
-          <ion-input type="email" [(ngModel)]="email" name="email" formControlName="email"></ion-input>
+          <ion-input type="email" [(ngModel)]="usuario.email" name="email" formControlName="email"></ion-input>
         </ion-item>
         <span *ngIf="erroEmail" class="error">{{ msgEmail }}</span>
 
         <ion-item>
           <ion-label floating>Senha</ion-label>
-          <ion-input type="password" [(ngModel)]="senha" name="senha" formControlName="senha"></ion-input>
+          <ion-input type="password" [(ngModel)]="usuario.senha" name="senha" formControlName="senha"></ion-input>
         </ion-item>
 
         <ion-item>
           <ion-label floating>Confirme a senha</ion-label>
-          <ion-input type="password" [(ngModel)]="senha2" name="senha2" formControlName="senha" (ionBlur)="senhasIguais()"></ion-input>
+          <ion-input type="password" [(ngModel)]="usuario.senha2" name="senha2" formControlName="senha" (ionBlur)="senhasIguais()"></ion-input>
         </ion-item>
         <span *ngIf="erroSenha" class="error">{{ msgSenha }}</span>
       </ion-card-content>
@@ -56,13 +56,13 @@
       <ion-card-content>
         <ion-item>
           <ion-label floating>Nome Completo</ion-label>
-          <ion-input type="text" [(ngModel)]="nome" name="nome" formControlName="nome"></ion-input>
+          <ion-input type="text" [(ngModel)]="usuario.nome" name="nome" formControlName="nome"></ion-input>
         </ion-item>
         <span *ngIf="erroNome" class="error">{{ msgNome }}</span>
 
         <ion-item>
           <ion-label floating>Gênero</ion-label>
-          <ion-select [(ngModel)]="genero" name="genero" formControlName="genero" interface="popover">
+          <ion-select [(ngModel)]="usuario.genero" name="genero" formControlName="genero" interface="popover">
             <ion-option value="F">Feminino</ion-option>
             <ion-option value="M">Masculino</ion-option>
           </ion-select>
@@ -71,26 +71,26 @@
 
         <ion-item>
           <ion-label floating>Data Nascimento</ion-label>
-          <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="dtNascimento" name="dtNascimento" formControlName="dtNascimento"></ion-datetime>
+          <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="usuario.dtNascimento" name="dtNascimento" formControlName="dtNascimento"></ion-datetime>
         </ion-item>
         <span *ngIf="erroDtNasc" class="error">{{ msgDtNasc }}</span>
 
         <ion-item>
           <ion-label floating>CPF/CNPJ</ion-label>
-          <ion-input type="text" [(ngModel)]="documento" name="documento" formControlName="documento" [brmasker]="{person: true}"></ion-input>
+          <ion-input type="text" [(ngModel)]="usuario.documento" name="documento" formControlName="documento" [brmasker]="{person: true}"></ion-input>
         </ion-item>
         <span *ngIf="erroDocumento" class="error">{{ msgDocumento }}</span>
 
         <ion-item>
           <ion-label floating>Telefone</ion-label>
-          <ion-input type="tel" [(ngModel)]="telefone" name="telefone" formControlName="telefone" [brmasker]="{phone: true}"></ion-input>
+          <ion-input type="tel" [(ngModel)]="usuario.telefone" name="telefone" formControlName="telefone" [brmasker]="{phone: true}"></ion-input>
         </ion-item>
         <span *ngIf="erroTelefone" class="error">{{ msgTelefone }}</span>
       </ion-card-content>
     </ion-card>
-
+    
     <div text-right>
-      <button ion-button icon-only (click)="cadastrar()">
+      <button ion-button icon-only>
             <ion-icon name="add"></ion-icon>
       </button>
     </div>

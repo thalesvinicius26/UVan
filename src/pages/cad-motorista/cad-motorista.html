@@ -8,83 +8,85 @@
 
 
 <ion-content padding>
-  <ion-card>
-    <ion-card-header>
-      CNH:
-    </ion-card-header>
-    <ion-card-content>
-      <ion-item>
-        <ion-label floating>Categoria</ion-label>
-        <ion-select [(ngModel)]="categoriaCNH">
-          <ion-option value="C">C</ion-option>
-          <ion-option value="D">D</ion-option>
-          <ion-option value="E">E</ion-option>
-          <ion-option value="AC">AC</ion-option>
-          <ion-option value="AD">AD</ion-option>
-          <ion-option value="AE">AE</ion-option>
-        </ion-select>
-      </ion-item>
-
-      <ion-item>
-        <ion-label floating>Número</ion-label>
-        <ion-input type="number" [(ngModel)]="numeroCNH"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label floating>Validade</ion-label>
-        <ion-datetime displayFormat="DD/MM/YYYY" min="2018" max="2100" [(ngModel)]="validadeCNH"></ion-datetime>
-      </ion-item>
-
-      <ion-item>
-        <ion-label floating>Observação</ion-label>
-        <ion-textarea [(ngModel)]="obsCNH"></ion-textarea>
-      </ion-item>
-    </ion-card-content>
-  </ion-card>
-
-  <ion-card>
-    <ion-card-header>
-      Região de Trabalho:
-    </ion-card-header>
-    <ion-card-content>
-      <ion-item>
-        <ion-label floating>Cidade:</ion-label>
-          <ion-select [(ngModel)]="regiao">
-            <ion-option value="Santo André">Santo André</ion-option>
-            <ion-option value="São Caetano">São Caetano</ion-option>
-            <ion-option value="São Bernardo do Campo">São Bernardo do Campo</ion-option>
-            <ion-option value="São Paulo">São Paulo</ion-option>
+  <form (ngSubmit)="proxForm()">
+    <ion-card>
+      <ion-card-header>
+        CNH:
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label floating>Categoria</ion-label>
+          <ion-select [(ngModel)]="motorista.cat_cnh" name="motorista.cat_cnh">
+            <ion-option value="C">C</ion-option>
+            <ion-option value="D">D</ion-option>
+            <ion-option value="E">E</ion-option>
+            <ion-option value="AC">AC</ion-option>
+            <ion-option value="AD">AD</ion-option>
+            <ion-option value="AE">AE</ion-option>
           </ion-select>
-      </ion-item>
-    </ion-card-content>
-  </ion-card>
+        </ion-item>
 
-  <ion-card>
-    <ion-card-header>
-      Universidades que atende:
-    </ion-card-header>
-    <ion-card-content>
-      <ion-item>
-        <ion-label floating>Universidades</ion-label>
-        <ion-select [(ngModel)]="faculdade" multiple="true" >
-          <ion-option value="UNIP-Alphaville">UNIP - Alphaville</ion-option>
-          <ion-option value="UNIP-Anchieta">UNIP - Anchieta</ion-option>
-          <ion-option value="UNIP-Campinas">UNIP - Campinas</ion-option>
-          <ion-option value="UNIP-Jundiaí">UNIP - Jundiaí</ion-option>
-          <ion-option value="UNIP-Marquês">UNIP - Marquês</ion-option>
-          <ion-option value="UNIP-Vergueiro">UNIP - Vergueiro</ion-option>
-          <ion-option value="UNIP-Paulista">UNIP - Paulista</ion-option>
-          <ion-option value="UNIP-Ribeirão Preto">UNIP - Ribeirão Preto</ion-option>
-          <ion-option value="UNIP-Santos">UNIP - Santos</ion-option>
-          <ion-option value="UNIP-Tatuapé">UNIP - Tatuapé</ion-option>
-        </ion-select>
-      </ion-item>
-    </ion-card-content>
-  </ion-card>
+        <ion-item>
+          <ion-label floating>Número</ion-label>
+          <ion-input type="number" [(ngModel)]="motorista.num_cnh" name="motorista.num_cnh"></ion-input>
+        </ion-item>
 
-  <div text-right>
-      <button ion-button icon-only >
-            <ion-icon name="add"></ion-icon>
-      </button>
-  </div>
+        <ion-item>
+          <ion-label floating>Validade</ion-label>
+          <ion-datetime displayFormat="DD/MM/YYYY" min="2018" max="2100" [(ngModel)]="motorista.valid_cnh" name="motorista.valid_cnh"></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Observação</ion-label>
+          <ion-textarea [(ngModel)]="motorista.obs_cnh" name="motorista.obs_cnh"></ion-textarea>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        Região de Trabalho:
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label floating>Cidade:</ion-label>
+            <ion-select [(ngModel)]="motorista.regiao" name="motorista.regiao">
+              <ion-option value="Santo André">Santo André</ion-option>
+              <ion-option value="São Caetano">São Caetano</ion-option>
+              <ion-option value="São Bernardo do Campo">São Bernardo do Campo</ion-option>
+              <ion-option value="São Paulo">São Paulo</ion-option>
+            </ion-select>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        Universidades que atende:
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label floating>Universidades</ion-label>
+          <ion-select [(ngModel)]="motorista.faculdade" name="motorista.faculdade" multiple="true" >
+            <ion-option value="UNIP-Alphaville">UNIP - Alphaville</ion-option>
+            <ion-option value="UNIP-Anchieta">UNIP - Anchieta</ion-option>
+            <ion-option value="UNIP-Campinas">UNIP - Campinas</ion-option>
+            <ion-option value="UNIP-Jundiaí">UNIP - Jundiaí</ion-option>
+            <ion-option value="UNIP-Marquês">UNIP - Marquês</ion-option>
+            <ion-option value="UNIP-Vergueiro">UNIP - Vergueiro</ion-option>
+            <ion-option value="UNIP-Paulista">UNIP - Paulista</ion-option>
+            <ion-option value="UNIP-Ribeirão Preto">UNIP - Ribeirão Preto</ion-option>
+            <ion-option value="UNIP-Santos">UNIP - Santos</ion-option>
+            <ion-option value="UNIP-Tatuapé">UNIP - Tatuapé</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <div text-right>
+        <button ion-button icon-only >
+              <ion-icon name="add"></ion-icon>
+        </button>
+    </div>
+  </form>
 </ion-content>
