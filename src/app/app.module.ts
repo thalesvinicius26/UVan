@@ -13,6 +13,7 @@ import { CadUsuarioPage } from '../pages/cad-usuario/cad-usuario';
 import { CadMotoristaPage } from '../pages/cad-motorista/cad-motorista';
 import { CadEnderecoPage } from '../pages/cad-endereco/cad-endereco';
 import { CadAlunoPage } from '../pages/cad-aluno/cad-aluno';
+import { AutenticacaoProvider } from '../providers/autenticacao/autenticacao';
 @NgModule({
   declarations: [
     MyApp,
@@ -41,7 +42,8 @@ import { CadAlunoPage } from '../pages/cad-aluno/cad-aluno';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AutenticacaoProvider
   ]
 })
 export class AppModule {}
