@@ -8,7 +8,7 @@
 
 
 <ion-content padding>
-  <form (ngSubmit)="proxForm()">
+  <form [formGroup]="cadForm" (ngSubmit)="proxForm()">
     <ion-card>
       <ion-card-header>
         Cadastre seu endereço:
@@ -16,45 +16,78 @@
       <ion-card-content>
         <ion-item>
           <ion-label floating>CEP</ion-label>
-          <ion-input type="text" [(ngModel)]="endereco.cep" name="endereco.cep" [brmasker]="{mask:'00000-000', len: 9}"></ion-input>
+          <ion-input type="text" [(ngModel)]="endereco.cep" name="cep" formControlName="cep" [brmasker]="{mask:'00000-000', len: 9, type:'num'}"></ion-input>
         </ion-item>
+        <div *ngIf="!cadForm.controls.cep.valid && (cadForm.controls.cep.dirty || cadForm.controls.cep.touched)">
+          <span class="error" [hidden]="!cadForm.controls.cep.errors.required">
+            Digite seu CEP
+          </span>
+          <span class="error" [hidden]="!cadForm.controls.cep.errors.pattern">
+            <br>CEP inválido
+          </span>
+        </div>
 
         <ion-item>
           <ion-label floating>UF</ion-label>
-          <ion-select [(ngModel)]="endereco.uf" name="endereco.uf">
-            <ion-option value="SP">SP</ion-option>
+          <ion-select [(ngModel)]="endereco.uf" name="uf" formControlName="uf">
+            <ion-option value="SP" aria-checked="true">SP</ion-option>
           </ion-select>
         </ion-item>
+        <div *ngIf="!cadForm.controls.uf.valid && (cadForm.controls.uf.dirty || cadForm.controls.uf.touched)">
+          <span class="error" [hidden]="!cadForm.controls.uf.errors.required">
+            Selecione a UF do estado
+          </span>
+        </div>
 
         <ion-item>
           <ion-label floating>Cidade</ion-label>
-          <ion-input type="text" [(ngModel)]="endereco.cidade" name="endereco.cidade"></ion-input>
+          <ion-input type="text" [(ngModel)]="endereco.cidade" name="cidade" formControlName="cidade"></ion-input>
         </ion-item>
+        <div *ngIf="!cadForm.controls.cidade.valid && (cadForm.controls.cidade.dirty || cadForm.controls.cidade.touched)">
+          <span class="error" [hidden]="!cadForm.controls.cidade.errors.required">
+            Digite sua cidade
+          </span>
+        </div>
 
         <ion-item>
           <ion-label floating>Bairro</ion-label>
-          <ion-input type="text" [(ngModel)]="endereco.bairro" name="endereco.bairro"></ion-input>
+          <ion-input type="text" [(ngModel)]="endereco.bairro" name="bairro" formControlName="bairro"></ion-input>
         </ion-item>
+        <div *ngIf="!cadForm.controls.bairro.valid && (cadForm.controls.bairro.dirty || cadForm.controls.bairro.touched)">
+          <span class="error" [hidden]="!cadForm.controls.bairro.errors.required">
+            Digite seu bairro
+          </span>
+        </div>
 
         <ion-item>
           <ion-label floating>Rua</ion-label>
-          <ion-input type="text" [(ngModel)]="endereco.rua" name="endereco.rua"></ion-input>
+          <ion-input type="text" [(ngModel)]="endereco.rua" name="rua" formControlName="rua"></ion-input>
         </ion-item>
+        <div *ngIf="!cadForm.controls.rua.valid && (cadForm.controls.rua.dirty || cadForm.controls.rua.touched)">
+          <span class="error" [hidden]="!cadForm.controls.rua.errors.required">
+            Digite sua rua
+          </span>
+        </div>
 
         <ion-item>
             <ion-label floating>Número</ion-label>
-            <ion-input type="number" [(ngModel)]="endereco.numero" name="endereco.numero"></ion-input>
+            <ion-input type="number" [(ngModel)]="endereco.numero" name="numero" formControlName="numero"></ion-input>
         </ion-item>
+        <div *ngIf="!cadForm.controls.numero.valid && (cadForm.controls.numero.dirty || cadForm.controls.numero.touched)">
+          <span class="error" [hidden]="!cadForm.controls.numero.errors.required">
+            Digite o número da casa
+          </span>
+        </div>
 
         <ion-item>
           <ion-label floating>Complemento</ion-label>
-          <ion-textarea [(ngModel)]="endereco.complemento" name="endereco.complemento"></ion-textarea>
+          <ion-textarea [(ngModel)]="endereco.complemento" name="complemento" formControlName="complemento"></ion-textarea>
         </ion-item>
       </ion-card-content>
     </ion-card>
 
     <div text-right>
-        <button ion-button icon-only>
+        <button ion-button icon-only [disabled]="!cadForm.valid">
               <ion-icon name="add"></ion-icon>
         </button>
       </div>

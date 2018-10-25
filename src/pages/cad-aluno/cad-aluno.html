@@ -8,27 +8,50 @@
 
 
 <ion-content padding>
-  <ion-card>
-    <ion-card-header>
-      Universidade
-    </ion-card-header>
-    <ion-card-content>
-      <ion-item>
-        <ion-label floating>Universidade</ion-label>
-        <ion-select [(ngModel)]="faculdade">
-          <ion-option value="UNIP-Anchieta">UNIP - Anchieta</ion-option>        
-        </ion-select>
-      </ion-item>
-
-      <ion-item>
-        <ion-label floating>Hora entrada</ion-label>
-        <ion-datetime displayFormat="HH:mm" [(ngModel)]="hrEntrada"></ion-datetime>
-      </ion-item>
-
-      <ion-item>
-          <ion-label floating>Hora saída</ion-label>
-          <ion-datetime displayFormat="HH:mm" [(ngModel)]="hrSaida"></ion-datetime>
+  <form [formGroup]="cadForm" (ngSubmit)="cadastrar()" >
+    <ion-card>
+      <ion-card-header>
+        Universidade
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label floating>Universidade</ion-label>
+          <ion-select [(ngModel)]="aluno.faculdade" name="faculdade" formControlName="faculdade">
+            <ion-option value="UNIP-Anchieta">UNIP - Anchieta</ion-option>        
+          </ion-select>
         </ion-item>
-    </ion-card-content>
-  </ion-card>
+        <div *ngIf="!cadForm.controls.faculdade.valid && (cadForm.controls.faculdade.dirty || cadForm.controls.faculdade.touched)">
+            <span class="error" [hidden]="!cadForm.controls.faculdade.errors.required">
+              Selecione a universidade em que estuda
+            </span>
+          </div>
+
+        <ion-item>
+          <ion-label floating>Hora entrada</ion-label>
+          <ion-datetime displayFormat="HH:mm" [(ngModel)]="aluno.hrEntrada" name="hrEntrada" formControlName="hrEntrada"></ion-datetime>
+        </ion-item>
+        <div *ngIf="!cadForm.controls.hrEntrada.valid && (cadForm.controls.hrEntrada.dirty || cadForm.controls.hrEntrada.touched)">
+            <span class="error" [hidden]="!cadForm.controls.hrEntrada.errors.required">
+              Selecione a hora de entrada
+            </span>
+          </div>
+
+        <ion-item>
+            <ion-label floating>Hora saída</ion-label>
+            <ion-datetime displayFormat="HH:mm" [(ngModel)]="aluno.hrSaida" name="hrSaida" formControlName="hrSaida"></ion-datetime>
+          </ion-item>
+          <div *ngIf="!cadForm.controls.hrSaida.valid && (cadForm.controls.hrSaida.dirty || cadForm.controls.hrSaida.touched)">
+              <span class="error" [hidden]="!cadForm.controls.hrSaida.errors.required">
+                  Selecione a hora de entrada
+              </span>
+            </div>
+      </ion-card-content>
+    </ion-card>
+
+    <div text-right>
+        <button ion-button icon-only [disabled]="!cadForm.valid">
+          <ion-icon name="add"></ion-icon>
+        </button>
+    </div>
+  </form>
 </ion-content>

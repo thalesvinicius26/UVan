@@ -7,11 +7,13 @@
     
     <ion-content>
         <ion-item>
-            <ion-avatar item-left>
-                <img src="../assets/imgs/logo.png">
-                <h2>Thales Vinicius Pereira da Silva</h2> <!--Nome-->
-                <p>Online</p> <!--Qualquer outra coisa-->
-            </ion-avatar>
+            <button menuClose ion-item (click)="openUserPage()">
+                <ion-avatar item-left>
+                    <img src="../assets/imgs/logo.png">
+                    <h2>{{ userPage.title }}</h2>
+                    <p>Online</p>
+                </ion-avatar>
+            </button>
         </ion-item>
 
         <ion-list>

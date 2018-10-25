@@ -16,6 +16,7 @@ import { CadMotoristaPage } from '../pages/cad-motorista/cad-motorista';
 import { CadEnderecoPage } from '../pages/cad-endereco/cad-endereco';
 import { CadAlunoPage } from '../pages/cad-aluno/cad-aluno';
 import { CadVeiculoPage } from '../pages/cad-veiculo/cad-veiculo';
+import { ConsUsuarioPage } from '../pages/cons-usuario/cons-usuario';
 import { AutenticacaoProvider } from '../providers/autenticacao/autenticacao';
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AutenticacaoProvider } from '../providers/autenticacao/autenticacao';
     CadMotoristaPage,
     CadEnderecoPage,
     CadAlunoPage,
-    CadVeiculoPage
+    CadVeiculoPage,
+    ConsUsuarioPage
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,8 @@ import { AutenticacaoProvider } from '../providers/autenticacao/autenticacao';
     CadMotoristaPage,
     CadEnderecoPage,
     CadAlunoPage,
-    CadVeiculoPage
+    CadVeiculoPage,
+    ConsUsuarioPage
   ],
   providers: [
     StatusBar,

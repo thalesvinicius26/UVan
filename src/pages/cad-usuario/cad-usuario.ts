@@ -15,24 +15,6 @@ export class CadUsuarioPage {
   private cadForm: any;
   private usuario: any = {};
 
-  private nome: string;
-  private erroTipoUsuario: boolean = false;
-  private erroEmail: boolean = false;
-  private erroSenha: boolean = false;
-  private erroNome: boolean = false;
-  private erroGenero: boolean = false;
-  private erroDtNasc: boolean = false;
-  private erroDocumento: boolean = false;
-  private erroTelefone: boolean = false;
-  private msgTipoUsuario: string;
-  private msgEmail: string;
-  private msgSenha: string;
-  private msgNome: string;
-  private msgGenero: string;
-  private msgDtNasc: string;
-  private msgDocumento: string;
-  private msgTelefone: string;
-
   constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public auth: AutenticacaoProvider, public loadingCtrl: LoadingController) {
     this.cadForm = formBuilder.group({
       tipoUsuario: ['', Validators.required],
@@ -43,10 +25,11 @@ export class CadUsuarioPage {
       ])],
       senha: ['', Validators.compose([
         Validators.minLength(6),
-        Validators.maxLength(30),
+        Validators.maxLength(50),
         Validators.pattern(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#!$%&*+-_])[a-zA-Z0-9 @#!$%&*+-_]*$/),
         Validators.required
       ])],
+      senha2: ['', Validators.required],
       nome: ['', Validators.compose([
         Validators.minLength(10),
         Validators.maxLength(100),
@@ -78,9 +61,7 @@ export class CadUsuarioPage {
   }
 
   proxForm() {
-    if (!this.cadForm.valid) {
-      this.validar();
-    } else {
+    if (this.cadForm.valid) {
       /*this.auth.postData(this.cadForm.value).subscribe( 
         data => console.log(data),
         err => console.log(err)
@@ -101,96 +82,4 @@ export class CadUsuarioPage {
       }, 1000);
     }
   }
-
-  senhasIguais() {
-    if (this.usuario.senha != this.usuario.senha2) {
-      this.msgSenha = "As senhas estão diferentes";
-      this.erroSenha = true;
-    } else {
-      this.msgSenha = "";
-      this.erroSenha = false;
-    }
-  }
-
-  validar() {
-    let { tipoUsuario, email, senha, nome, genero, dtNascimento, documento, telefone } = this.cadForm.controls;
-
-    if (!this.cadForm.valid) {
-      if (!tipoUsuario.valid) {
-        this.erroTipoUsuario = true;
-        this.msgTipoUsuario = "Selecione o tipo de usuário";
-      } else {
-        this.erroTipoUsuario = false;
-        this.msgTipoUsuario = "";
-      }
-      if (!email.valid) {
-        
-        this.erroEmail = true;
-        this.msgEmail = "Email inválido";
-      } else {
-        this.erroEmail = false;
-        this.msgEmail = "";
-      }
-      if (!senha.valid) {
-        this.erroSenha = true;
-        this.msgSenha = "Senha inválida. No mínimo 6 dígitos com letras(maiúsculas e minúsculas), números e caracteres especiais(@#!$%&*+_-)";
-      } else {
-        this.erroSenha = false;
-        this.msgSenha = "";
-      }
-      if (!nome.valid) {
-        this.erroNome = true;
-        this.msgNome = "Informe o seu nome completo";
-      } else {
-        this.erroNome = false;
-        this.msgNome = "";
-      }
-      if (!genero.valid) {
-        this.erroGenero = true;
-        this.msgGenero = "Selecione seu gênero";
-      } else {
-        this.erroGenero = false;
-        this.msgGenero = "";
-      }
-      if (!dtNascimento.valid) {
-        this.erroDtNasc = true;
-        this.msgDtNasc = "Informe sua data de nascimento";
-      } else {
-        this.erroDtNasc = false;
-        this.msgDtNasc = "";
-      }
-      if (!documento.valid) {
-        this.erroDocumento = true;
-        this.msgDocumento = "CPF/CNPJ inválido";
-      } else {
-        this.erroDocumento = false;
-        this.msgDocumento = "";
-      }
-      if (!telefone.valid) {
-        this.erroTelefone = true;
-        this.msgTelefone = "Telefone inválido";
-      } else {
-        this.erroTelefone = false;
-        this.msgTelefone = "";
-      }
-    } else {
-      this.erroTipoUsuario = false;
-      this.msgTipoUsuario = "";
-      this.erroEmail = false;
-      this.msgEmail = "";
-      this.erroSenha = false;
-      this.msgSenha = "";
-      this.erroNome = false;
-      this.msgNome = "";
-      this.erroGenero = false;
-      this.msgGenero = "";
-      this.erroDtNasc = false;
-      this.msgDtNasc = "";
-      this.erroDocumento = false;
-      this.msgDocumento = "";
-      this.erroTelefone = false;
-      this.msgTelefone = "";
-    }
-  }
-
 }

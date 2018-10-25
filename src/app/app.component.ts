@@ -10,6 +10,7 @@ import { CadMotoristaPage } from '../pages/cad-motorista/cad-motorista';
 import { CadAlunoPage } from '../pages/cad-aluno/cad-aluno';
 import { CadUsuarioPage } from '../pages/cad-usuario/cad-usuario';
 import { CadVeiculoPage } from '../pages/cad-veiculo/cad-veiculo';
+import { ConsUsuarioPage } from '../pages/cons-usuario/cons-usuario';
 @Component({
   templateUrl: 'app.html'
 })
@@ -19,6 +20,7 @@ export class MyApp {
 
   rootPage: any;
   auth: boolean = true;
+  userPage: any = {};
   pages: Array<{title: string, component: any}>;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
@@ -28,6 +30,7 @@ export class MyApp {
       this.rootPage = LoginPage;
     }
 
+    this.userPage = {title: 'Thales Vinicius', component: ConsUsuarioPage};
     this.pages = [
       {title: 'Login', component: LoginPage},
       {title: 'Cadastro', component: CadUsuarioPage},
@@ -35,7 +38,7 @@ export class MyApp {
       {title: 'Motorista', component: CadMotoristaPage},
       {title: 'Aluno', component: CadAlunoPage},
       {title: 'Veículo', component: CadVeiculoPage}
-    ]
+    ];
 
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -49,6 +52,9 @@ export class MyApp {
     this.nav.push(page.component);
   }
 
+  openUserPage() {
+    this.nav.push(this.userPage.component);
+  }
 
 }
 

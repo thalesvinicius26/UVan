@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { CadVeiculoPage } from '../cad-veiculo/cad-veiculo';
+import { FormBuilder, Validators } from '@angular/forms';
 
 
 @IonicPage()
@@ -10,11 +11,28 @@ import { CadVeiculoPage } from '../cad-veiculo/cad-veiculo';
 })
 export class CadMotoristaPage {
 
+  private cadForm: any = {};
   private usuario: any = {};
   private endereco: any = {};
   private motorista: any = {};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, public formBuilder: FormBuilder) {
+
+    this.cadForm = formBuilder.group({
+      cat_cnh: ['', Validators.compose([
+        Validators.minLength(1),
+        Validators.maxLength(2),
+        Validators.required
+      ])],
+      num_cnh: ['', Validators.compose([
+        Validators.pattern(/^[0-9]{11}$/),
+        Validators.required
+      ])],
+      valid_cnh: ['', Validators.required],
+      obs_cnh: ['', Validators.nullValidator],
+      regiao: ['', Validators.required],
+      faculdade: ['', Validators.required]
+    });
     this.usuario = this.navParams.get("usuario");
     this.endereco = this.navParams.get("endereco");
     this.motorista.cat_cnh = this.navParams.get("motorista.cat_cnh");
@@ -23,25 +41,26 @@ export class CadMotoristaPage {
     this.motorista.obs_cnh = this.navParams.get("motorista.obs_cnh");
     this.motorista.regiao = this.navParams.get("motorista.regiao");
     this.motorista.faculdade = this.navParams.get("motorista.faculdade");
-    console.log(this.usuario);
   }
 
   proxForm() {
-    let loader = this.loadingCtrl.create({
-      content: "Carregando"
-    });
 
-    loader.present();
-
-    setTimeout(() => {
-      this.navCtrl.push(CadVeiculoPage, {
-        usuario: this.usuario,
-        endereco: this.endereco,
-        motorista: this.motorista
+    if (this.cadForm.valid) {
+      let loader = this.loadingCtrl.create({
+        content: "Carregando"
       });
-      loader.dismiss();
-    }, 1000);
-  }
 
+      loader.present();
+
+      setTimeout(() => {
+        this.navCtrl.push(CadVeiculoPage, {
+          usuario: this.usuario,
+          endereco: this.endereco,
+          motorista: this.motorista
+        });
+        loader.dismiss();
+      }, 1000);
+    }
+  }
 
 }

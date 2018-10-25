@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Http, Headers, Response, ResponseOptions } from '@angular/http';
+import { Http, Headers, Response } from '@angular/http';
 import { Injectable } from '@angular/core';
-import { catchError, map } from 'rxjs/operators';
-import { Observable } from 'rxjs/Observable';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class AutenticacaoProvider {
