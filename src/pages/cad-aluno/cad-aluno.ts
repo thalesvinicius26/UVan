@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Usuario } from '../../models/usuario';
 
 
 @IonicPage()
@@ -11,10 +12,10 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class CadAlunoPage {
 
   private cadForm: any = {};
-  private usuario: any = {};
+  private usuario: Usuario = new Usuario();
   private aluno: any = {};
   private endereco: any = {};
-  private dados: any = {};
+  private dadosAluno: any = {};
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder) {
     this.cadForm = formBuilder.group({
@@ -28,10 +29,10 @@ export class CadAlunoPage {
 
   cadastrar() {
     if (this.cadForm.valid) {
-      this.dados.usuario = this.usuario;
-      this.dados.aluno = this.aluno;
-      this.dados.endereco = this.endereco;
-      console.log(this.dados);
+      this.dadosAluno.usuario = this.usuario;
+      this.dadosAluno.aluno = this.aluno;
+      this.dadosAluno.endereco = this.endereco;
+      console.log(this.dadosAluno);
     } else {
 
     }

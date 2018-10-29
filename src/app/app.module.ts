@@ -18,6 +18,7 @@ import { CadAlunoPage } from '../pages/cad-aluno/cad-aluno';
 import { CadVeiculoPage } from '../pages/cad-veiculo/cad-veiculo';
 import { ConsUsuarioPage } from '../pages/cons-usuario/cons-usuario';
 import { AutenticacaoProvider } from '../providers/autenticacao/autenticacao';
+import { LoginProvider } from '../providers/login/login';
 @NgModule({
   declarations: [
     MyApp,
@@ -53,7 +54,8 @@ import { AutenticacaoProvider } from '../providers/autenticacao/autenticacao';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AutenticacaoProvider
+    AutenticacaoProvider,
+    LoginProvider
   ]
 })
 export class AppModule {}
