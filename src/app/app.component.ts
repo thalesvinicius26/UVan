@@ -6,11 +6,13 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { CadEnderecoPage } from '../pages/cad-endereco/cad-endereco';
-import { CadMotoristaPage } from '../pages/cad-motorista/cad-motorista';
-import { CadAlunoPage } from '../pages/cad-aluno/cad-aluno';
+import { CadMotoristaPage } from '../pages/cad-usuario/cad-motorista/cad-motorista';
+import { CadAlunoPage } from '../pages/cad-usuario/cad-aluno/cad-aluno';
 import { CadUsuarioPage } from '../pages/cad-usuario/cad-usuario';
 import { CadVeiculoPage } from '../pages/cad-veiculo/cad-veiculo';
 import { ConsUsuarioPage } from '../pages/cons-usuario/cons-usuario';
+import { LoginProvider } from '../providers/login/login';
+import { Usuario } from '../models/usuario';
 @Component({
   templateUrl: 'app.html'
 })
@@ -19,18 +21,26 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any;
-  auth: boolean = true;
+  private usuario: Usuario = new Usuario();
   userPage: any = {};
   pages: Array<{title: string, component: any}>;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
-    if (this.auth) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private loginProvider: LoginProvider) {
+    platform.ready().then(() => {
+      // Okay, so the platform is ready and our plugins are available.
+      // Here you can do any higher level native things you might need.
+      statusBar.styleDefault();
+      splashScreen.hide();
+    });
+
+    if (this.loginProvider.getAutenticado()) {
+      LoginProvider.response.subscribe(usuario => console.log(usuario));
       this.rootPage = HomePage;
     } else {
       this.rootPage = LoginPage;
     }
 
-    this.userPage = {title: 'Thales Vinicius', component: ConsUsuarioPage};
+    this.userPage = {title: this.usuario.nome, component: ConsUsuarioPage};
     this.pages = [
       {title: 'Login', component: LoginPage},
       {title: 'Cadastro', component: CadUsuarioPage},
@@ -39,13 +49,6 @@ export class MyApp {
       {title: 'Aluno', component: CadAlunoPage},
       {title: 'Veículo', component: CadVeiculoPage}
     ];
-
-    platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      statusBar.styleDefault();
-      splashScreen.hide();
-    });
   }
 
   openPage(page){
@@ -55,6 +58,5 @@ export class MyApp {
   openUserPage() {
     this.nav.push(this.userPage.component);
   }
-
 }
 

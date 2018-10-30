@@ -16,7 +16,7 @@
       <ion-card-content>
         <ion-item>
           <ion-label floating>Marca</ion-label>
-          <ion-input type="text" [(ngModel)]="veiculo.marca" name="marca" formControlName="marca"></ion-input>
+          <ion-input type="text" [(ngModel)]="usuario.motorista.veiculo.marca" name="marca" formControlName="marca"></ion-input>
         </ion-item>
         <div *ngIf="!cadForm.controls.marca.valid && (cadForm.controls.marca.dirty || cadForm.controls.marca.touched)">
           <span class="error" [hidden]="!cadForm.controls.marca.errors.required">
@@ -26,7 +26,7 @@
 
         <ion-item>
           <ion-label floating>Modelo</ion-label>
-          <ion-input type="text" [(ngModel)]="veiculo.modelo" name="modelo" formControlName="modelo"></ion-input>
+          <ion-input type="text" [(ngModel)]="usuario.motorista.veiculo.modelo" name="modelo" formControlName="modelo"></ion-input>
         </ion-item>
         <div *ngIf="!cadForm.controls.modelo.valid && (cadForm.controls.modelo.dirty || cadForm.controls.modelo.touched)">
           <span class="error" [hidden]="!cadForm.controls.modelo.errors.required">
@@ -36,7 +36,7 @@
 
         <ion-item>
           <ion-label floating>Ano</ion-label>
-          <ion-datetime displayFormat="YYYY" max="2100" [(ngModel)]="veiculo.ano" name="ano" formControlName="ano"></ion-datetime>
+          <ion-datetime displayFormat="YYYY" max="2100" [(ngModel)]="usuario.motorista.veiculo.ano" name="ano" formControlName="ano"></ion-datetime>
         </ion-item>
         <div *ngIf="!cadForm.controls.ano.valid && (cadForm.controls.ano.dirty || cadForm.controls.ano.touched)">
           <span class="error" [hidden]="!cadForm.controls.ano.errors.required">
@@ -46,7 +46,7 @@
 
         <ion-item>
           <ion-label floating>Cor</ion-label>
-          <ion-select [(ngModel)]="veiculo.cor" name="cor" formControlName="cor">
+          <ion-select [(ngModel)]="usuario.motorista.veiculo.cor" name="cor" formControlName="cor">
             <ion-option value="Branco">Branco</ion-option>
             <ion-option value="Preto">Preto</ion-option>
             <ion-option value="Prata">Prata</ion-option>
@@ -63,7 +63,7 @@
 
         <ion-item>
           <ion-label floating>Lugares</ion-label>
-          <ion-input type="number" [(ngModel)]="veiculo.lugares" name="lugares" formControlName="lugares"></ion-input>
+          <ion-input type="number" [(ngModel)]="usuario.motorista.veiculo.lugares" name="lugares" formControlName="lugares"></ion-input>
         </ion-item>
         <div *ngIf="!cadForm.controls.lugares.valid && (cadForm.controls.lugares.dirty || cadForm.controls.lugares.touched)">
           <span class="error" [hidden]="!cadForm.controls.lugares.errors.required">
@@ -73,7 +73,7 @@
 
         <ion-item>
           <ion-label floating>Placa</ion-label>
-          <ion-input type="text" [(ngModel)]="veiculo.placa" name="placa" [brmasker]="{mask: '000-0000', len:8}" formControlName="placa"></ion-input>
+          <ion-input type="text" [(ngModel)]="usuario.motorista.veiculo.placa" name="placa" [brmasker]="{mask: '000-0000', len:8}" formControlName="placa"></ion-input>
         </ion-item>
         <div *ngIf="!cadForm.controls.placa.valid && (cadForm.controls.placa.dirty || cadForm.controls.placa.touched)">
           <span class="error" [hidden]="!cadForm.controls.placa.errors.required">
@@ -86,7 +86,7 @@
 
         <ion-item>
             <ion-label floating>Renavam</ion-label>
-            <ion-input type="number" [(ngModel)]="veiculo.renavam" name="renavam" formControlName="renavam" [brmasker]="{mask: '00000000000', len:11, type:'num'}"></ion-input>
+            <ion-input type="number" [(ngModel)]="usuario.motorista.veiculo.renavam" name="renavam" formControlName="renavam" [brmasker]="{mask: '00000000000', len:11, type:'num'}"></ion-input>
         </ion-item>
         <div *ngIf="!cadForm.controls.renavam.valid && (cadForm.controls.renavam.dirty || cadForm.controls.renavam.touched)">
           <span class="error" [hidden]="!cadForm.controls.renavam.errors.required">

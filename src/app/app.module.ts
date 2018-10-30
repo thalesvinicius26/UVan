@@ -12,13 +12,15 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { CadUsuarioPage } from '../pages/cad-usuario/cad-usuario';
-import { CadMotoristaPage } from '../pages/cad-motorista/cad-motorista';
+import { CadMotoristaPage } from '../pages/cad-usuario/cad-motorista/cad-motorista';
 import { CadEnderecoPage } from '../pages/cad-endereco/cad-endereco';
-import { CadAlunoPage } from '../pages/cad-aluno/cad-aluno';
+import { CadAlunoPage } from '../pages/cad-usuario/cad-aluno/cad-aluno';
 import { CadVeiculoPage } from '../pages/cad-veiculo/cad-veiculo';
 import { ConsUsuarioPage } from '../pages/cons-usuario/cons-usuario';
 import { AutenticacaoProvider } from '../providers/autenticacao/autenticacao';
 import { LoginProvider } from '../providers/login/login';
+import { CadastroProvider } from '../providers/cadastro/cadastro';
+import { FaculdadeProvider } from '../providers/faculdade/faculdade';
 @NgModule({
   declarations: [
     MyApp,
@@ -55,7 +57,9 @@ import { LoginProvider } from '../providers/login/login';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AutenticacaoProvider,
-    LoginProvider
+    LoginProvider,
+    CadastroProvider,
+    FaculdadeProvider
   ]
 })
 export class AppModule {}

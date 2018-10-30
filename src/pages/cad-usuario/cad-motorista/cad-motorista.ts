@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
-import { CadVeiculoPage } from '../cad-veiculo/cad-veiculo';
 import { FormBuilder, Validators } from '@angular/forms';
+
+import { FaculdadeProvider } from '../../../providers/faculdade/faculdade';
+import { CadVeiculoPage } from '../../cad-veiculo/cad-veiculo';
+import { Usuario } from '../../../models/usuario';
 
 
 @IonicPage()
@@ -12,11 +15,16 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class CadMotoristaPage {
 
   private cadForm: any = {};
-  private usuario: any = {};
-  private endereco: any = {};
-  private motorista: any = {};
+  private usuario: Usuario = new Usuario();
+  private listaFacul: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, public formBuilder: FormBuilder) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public loadingCtrl: LoadingController,
+    public formBuilder: FormBuilder,
+    private faculdadeProvider: FaculdadeProvider
+    ) {
 
     this.cadForm = formBuilder.group({
       cat_cnh: ['', Validators.compose([
@@ -34,13 +42,16 @@ export class CadMotoristaPage {
       faculdade: ['', Validators.required]
     });
     this.usuario = this.navParams.get("usuario");
-    this.endereco = this.navParams.get("endereco");
-    this.motorista.cat_cnh = this.navParams.get("motorista.cat_cnh");
-    this.motorista.num_cnh = this.navParams.get("motorista.num_cnh");
-    this.motorista.valid_cnh = this.navParams.get("motorista.valid_cnh");
-    this.motorista.obs_cnh = this.navParams.get("motorista.obs_cnh");
-    this.motorista.regiao = this.navParams.get("motorista.regiao");
-    this.motorista.faculdade = this.navParams.get("motorista.faculdade");
+    this.usuario.motorista.cat_cnh = this.navParams.get("motorista.cat_cnh");
+    this.usuario.motorista.num_cnh = this.navParams.get("motorista.num_cnh");
+    this.usuario.motorista.validade_cnh = this.navParams.get("motorista.valid_cnh");
+    this.usuario.motorista.obs_cnh = this.navParams.get("motorista.obs_cnh");
+    this.usuario.motorista.regiao = this.navParams.get("motorista.regiao");
+    this.usuario.motorista.faculdade = this.navParams.get("faculdade");
+  }
+
+  getFaculdade() {
+    this.listaFacul = this.faculdadeProvider.getListaFacul();
   }
 
   proxForm() {
@@ -54,13 +65,15 @@ export class CadMotoristaPage {
 
       setTimeout(() => {
         this.navCtrl.push(CadVeiculoPage, {
-          usuario: this.usuario,
-          endereco: this.endereco,
-          motorista: this.motorista
+          usuario: this.usuario
         });
         loader.dismiss();
       }, 1000);
     }
+  }
+
+  ionViewDidLoad() {
+    this.getFaculdade();
   }
 
 }

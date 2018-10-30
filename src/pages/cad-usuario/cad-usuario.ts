@@ -4,6 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 
 import { AutenticacaoProvider } from '../../providers/autenticacao/autenticacao';
 import { CadEnderecoPage } from '../cad-endereco/cad-endereco';
+import { Usuario } from '../../models/usuario';
 
 @IonicPage()
 @Component({
@@ -13,7 +14,8 @@ import { CadEnderecoPage } from '../cad-endereco/cad-endereco';
 export class CadUsuarioPage {
 
   private cadForm: any;
-  private usuario: any = {};
+  private usuario: Usuario = new Usuario();
+  private senha2: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public auth: AutenticacaoProvider, public loadingCtrl: LoadingController) {
     this.cadForm = formBuilder.group({
@@ -52,7 +54,6 @@ export class CadUsuarioPage {
     this.usuario.tipo = this.navParams.get("usuario.tipo");
     this.usuario.email = this.navParams.get("usuario.email");
     this.usuario.senha = this.navParams.get("usuario.senha");
-    this.usuario.senha2 = this.navParams.get("usuario.senha2");
     this.usuario.nome = this.navParams.get("usuario.nome");
     this.usuario.genero = this.navParams.get("usuario.genero");
     this.usuario.dtNascimento = this.navParams.get("usuario.dtNascimento");
@@ -67,19 +68,24 @@ export class CadUsuarioPage {
         err => console.log(err)
       );*/
       //alert("Cadastrado!");
-      //aqui fazer nav push para outra tela de acordo com o tipo do usuário
-      let loader = this.loadingCtrl.create({
-        content: "Carregando"
-      });
-  
-      loader.present();
-  
-      setTimeout(() => {
-        this.navCtrl.push(CadEnderecoPage, {
-          usuario: this.usuario
+
+      if (this.usuario.senha == this.senha2) {
+        let loader = this.loadingCtrl.create({
+          content: "Carregando"
         });
-        loader.dismiss();
-      }, 1000);
+    
+        loader.present();
+    
+        setTimeout(() => {
+          this.navCtrl.push(CadEnderecoPage, {
+            usuario: this.usuario
+          });
+          loader.dismiss();
+        }, 1000);
+      } else {
+        alert('Senhas inválidas, não são iguais');
+      }
+
     }
   }
 }

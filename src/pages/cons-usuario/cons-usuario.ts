@@ -20,6 +20,7 @@ export class ConsUsuarioPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ConsUsuarioPage');
+    //colocar aqui método de buscar infos
   }
 
 }

@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
-import { CadMotoristaPage } from '../cad-motorista/cad-motorista';
 import { FormBuilder, Validators } from '@angular/forms';
+
+import { CadMotoristaPage } from '../cad-usuario/cad-motorista/cad-motorista';
+import { Usuario } from '../../models/usuario';
+import { CadAlunoPage } from '../cad-usuario/cad-aluno/cad-aluno';
 
 @IonicPage()
 @Component({
@@ -11,8 +14,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class CadEnderecoPage {
 
   private cadForm: any = {};
-  private usuario: any = {};
-  private endereco: any = {};
+  private usuario: Usuario = new Usuario();
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, public formBuilder: FormBuilder) {
 
@@ -29,13 +31,17 @@ export class CadEnderecoPage {
       complemento: ['', Validators.nullValidator]
     });
     this.usuario = this.navParams.get("usuario");
-    this.endereco.cep = this.navParams.get("endereco.cep");
-    this.endereco.uf = this.navParams.get("endereco.uf");
-    this.endereco.cidade = this.navParams.get("endereco.cidade");
-    this.endereco.bairro = this.navParams.get("endereco.bairro");
-    this.endereco.rua = this.navParams.get("endereco.rua");
-    this.endereco.numero = this.navParams.get("endereco.numero");
-    this.endereco.complemento = this.navParams.get("endereco.complemento");
+    this.usuario.endereco.cep = this.navParams.get("usuario.endereco.cep");
+    this.usuario.endereco.uf = this.navParams.get("usuario.endereco.uf");
+    this.usuario.endereco.cidade = this.navParams.get("usuario.endereco.cidade");
+    this.usuario.endereco.bairro = this.navParams.get("usuario.endereco.bairro");
+    this.usuario.endereco.rua = this.navParams.get("usuario.endereco.rua");
+    this.usuario.endereco.numero = this.navParams.get("usuario.endereco.numero");
+    this.usuario.endereco.complemento = this.navParams.get("usuario.endereco.complemento");
+  }
+
+  getEndereco() {
+
   }
 
   proxForm() {
@@ -47,13 +53,22 @@ export class CadEnderecoPage {
 
       loader.present();
 
-      setTimeout(() => {
-        this.navCtrl.push(CadMotoristaPage, {
-          usuario: this.usuario,
-          endereco: this.endereco
-        });
-        loader.dismiss();
-      }, 1000);
+      if (this.usuario.tipo == "C") {
+        setTimeout(() => {
+          this.navCtrl.push(CadMotoristaPage, {
+            usuario: this.usuario
+          });
+          loader.dismiss();
+        }, 1000);
+
+      } else {
+        setTimeout(() => {
+          this.navCtrl.push(CadAlunoPage, {
+            usuario: this.usuario
+          });
+          loader.dismiss();
+        }, 1000);
+      }
     }
   }
 }

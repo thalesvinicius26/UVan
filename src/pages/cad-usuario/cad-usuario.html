@@ -62,7 +62,7 @@
 
         <ion-item>
           <ion-label floating>Confirme a senha</ion-label>
-          <ion-input type="password" [(ngModel)]="usuario.senha2" name="senha2" formControlName="senha2"></ion-input>
+          <ion-input type="password" [(ngModel)]="senha2" name="senha2" formControlName="senha2"></ion-input>
         </ion-item>
         <div *ngIf="!cadForm.controls.senha2.valid && (cadForm.controls.senha2.dirty || cadForm.controls.senha2.touched)">
           <span class="error" [hidden]="!cadForm.controls.senha2.errors.required">
@@ -70,7 +70,7 @@
           </span>
         </div>
         <div *ngIf="cadForm.controls.senha2.dirty || cadForm.controls.senha2.touched" >
-          <span class="error" [hidden]="usuario.senha == usuario.senha2">
+          <span class="error" [hidden]="usuario.senha == senha2">
             Senhas não são iguais
           </span>
         </div>
@@ -144,7 +144,7 @@
     </ion-card>
     
     <div text-right>
-      <button ion-button icon-only [disabled]="!cadForm.valid || (usuario.senha != usuario.senha2)">
+      <button ion-button icon-only [disabled]="!cadForm.valid || (usuario.senha != senha2)">
         <ion-icon name="add"></ion-icon>
       </button>
     </div>
