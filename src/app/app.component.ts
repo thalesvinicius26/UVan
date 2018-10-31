@@ -26,6 +26,7 @@ export class MyApp {
   pages: Array<{title: string, component: any}>;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private loginProvider: LoginProvider) {
+
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -33,8 +34,9 @@ export class MyApp {
       splashScreen.hide();
     });
 
+    LoginProvider.response.subscribe(usuario => this.usuario = usuario);
+
     if (this.loginProvider.getAutenticado()) {
-      LoginProvider.response.subscribe(usuario => console.log(usuario));
       this.rootPage = HomePage;
     } else {
       this.rootPage = LoginPage;

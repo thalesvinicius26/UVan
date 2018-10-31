@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Thales Vinicius</ion-title>
+    <ion-title>{{ usuario?.nome }}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -17,7 +17,7 @@
         </button>
       </div>
       <ion-card-title>
-        Thales Vinicius
+        {{ usuario?.nome }}
       </ion-card-title>
     </ion-card-content>
   </ion-card>
@@ -30,7 +30,7 @@
     </div>
     <ion-card-content>
       <h3>Tipo de usuario</h3>
-      <p>Aluno</p>
+      <p>{{ usuario?.tipo == 'A' ? 'Aluno' : 'Condutor' }}</p>
     </ion-card-content>
   </ion-card>
 
@@ -45,10 +45,10 @@
     </ion-card-header>
     <ion-card-content>
       <h3>Email</h3>
-      <p>thalesvinicius@gmail.com</p>
+      <p>{{ usuario?.email }}</p>
       <br>
       <h3>Senha</h3>
-      <p>**********</p>
+      <p>{{ usuario?.senha }}</p>
     </ion-card-content>
   </ion-card>
 
@@ -63,19 +63,19 @@
     </ion-card-header>
     <ion-card-content>
       <h3>Nome</h3>
-      <p>Thales Vinicius</p>
+      <p>{{ usuario?.nome }}</p>
       <br>
       <h3>Gênero</h3>
-      <p>Masculino</p>
+      <p>{{ usuario?.genero == 'M' ? 'Masculino' : 'Feminino' }}</p>
       <br>
       <h3>Data de nascimento</h3>
-      <p>26/09/1996</p>
+      <p>{{ usuario?.dtNascimento | date: "dd/MM/yyyy" }}</p>
       <br>
       <h3>CPF</h3>
-      <p>123.123.123-12</p>
+      <p>{{ usuario?.documento }}</p>
       <br>
       <h3>Telefone</h3>
-      <p>(11) 95174-5878</p>
+      <p>{{ usuario?.telefone }}</p>
     </ion-card-content>
   </ion-card>
 
@@ -90,13 +90,13 @@
     </ion-card-header>
     <ion-card-content>
       <h3>Universidade</h3>
-      <p>UNIP - Anchieta</p>
+      <p>{{ usuario?.aluno.faculdade.nome }} - {{ usuario?.aluno.faculdade.campos }}</p>
       <br>
       <h3>Hora de entrada</h3>
-      <p>19:00</p>
+      <p>{{ usuario?.aluno.hrEntrada }}</p>
       <br>
       <h3>Hora de Saída</h3>
-      <p>22:30</p>
+      <p>{{ usuario?.aluno.hrSaida }}</p>
     </ion-card-content>
   </ion-card>
 </ion-content>

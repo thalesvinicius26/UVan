@@ -1,12 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-/**
- * Generated class for the ConsUsuarioPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Usuario } from '../../models/usuario';
+import { LoginProvider } from '../../providers/login/login';
+
 
 @IonicPage()
 @Component({
@@ -15,11 +12,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ConsUsuarioPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  private usuario: Usuario = new Usuario();
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private loginProvider: LoginProvider) {
+    LoginProvider.response.subscribe(usuario => this.usuario = usuario);
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ConsUsuarioPage');
+    this.loginProvider.getAutenticado();
+    LoginProvider.response.subscribe(usuario => this.usuario = usuario);
+    console.log(this.usuario);
     //colocar aqui método de buscar infos
   }
 

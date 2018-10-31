@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
+import { Geolocation } from '@ionic-native/geolocation';
 
 import { BrMaskerModule } from 'brmasker-ionic-3';
 
@@ -53,13 +54,14 @@ import { FaculdadeProvider } from '../providers/faculdade/faculdade';
     ConsUsuarioPage
   ],
   providers: [
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
     AutenticacaoProvider,
     LoginProvider,
     CadastroProvider,
-    FaculdadeProvider
+    FaculdadeProvider,
+    Geolocation
   ]
 })
 export class AppModule {}

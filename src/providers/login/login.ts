@@ -6,14 +6,11 @@ import { Usuario } from '../../models/usuario';
 export class LoginProvider {
 
   //private url = 'http://uvan.ddns.net/';
-  private autenticado: boolean = false;
+  private autenticado: boolean = true;
   private usuario: Usuario = new Usuario();
-  static response = new EventEmitter<string>();
+  static response = new EventEmitter<Usuario>();
 
   constructor() {
-  }
-
-  getLogin(usuario: Usuario) {
     this.usuario.nome = 'Thales Vinicius';
     this.usuario.tipo = 'A';
     this.usuario.email = 'thales@gmail.com';
@@ -26,16 +23,20 @@ export class LoginProvider {
     this.usuario.aluno.hrSaida = '22:30';
     this.usuario.aluno.faculdade.nome = 'UNIP';
     this.usuario.aluno.faculdade.campos = 'Anchieta';
+  }
+
+  getLogin(usuario: Usuario) {
 
     if (usuario.email == 'teste@email.com' && usuario.senha == '1234') {
 
-      LoginProvider.response.emit('teste'); //trabalhar com emissor 
+      LoginProvider.response.emit(this.usuario); //trabalhar com emissor 
       return true;
     }
     return false;
   }
 
   getAutenticado() {
+    LoginProvider.response.emit(this.usuario);
     return this.autenticado;
   }
 }
