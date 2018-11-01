@@ -22,6 +22,10 @@ import { AutenticacaoProvider } from '../providers/autenticacao/autenticacao';
 import { LoginProvider } from '../providers/login/login';
 import { CadastroProvider } from '../providers/cadastro/cadastro';
 import { FaculdadeProvider } from '../providers/faculdade/faculdade';
+import { MapaComponent } from '../components/mapa/mapa';
+import { ConsultaProvider } from '../providers/consulta/consulta';
+
+// Separar em mais módulos para LazyLoading
 @NgModule({
   declarations: [
     MyApp,
@@ -32,7 +36,8 @@ import { FaculdadeProvider } from '../providers/faculdade/faculdade';
     CadEnderecoPage,
     CadAlunoPage,
     CadVeiculoPage,
-    ConsUsuarioPage
+    ConsUsuarioPage,
+    MapaComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +56,8 @@ import { FaculdadeProvider } from '../providers/faculdade/faculdade';
     CadEnderecoPage,
     CadAlunoPage,
     CadVeiculoPage,
-    ConsUsuarioPage
+    ConsUsuarioPage,
+    MapaComponent
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
@@ -61,7 +67,8 @@ import { FaculdadeProvider } from '../providers/faculdade/faculdade';
     LoginProvider,
     CadastroProvider,
     FaculdadeProvider,
-    Geolocation
+    Geolocation,
+    ConsultaProvider
   ]
 })
 export class AppModule {}

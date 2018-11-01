@@ -1,11 +1,12 @@
-import { Faculdade } from "./faculdade";
+import { Usuario } from "./usuario";
 
-export class Aluno {
+export class Aluno extends Usuario {
     hrEntrada: string;
     hrSaida: string;
     ptEmbarque: string;
     hrEmbarque: string;
     ptDesembarque: string;
     hrDesembarque: string;
-    faculdade: Faculdade = new Faculdade();
+    motorista: number;
+    faculdade: number;
 }

@@ -1,10 +1,10 @@
 
 export class Endereco {
     cep: string;
-    uf: string;
+    estado: string;
     cidade: string;
     bairro: string;
     rua: string;
-    numero: number;
+    numeroDaCasa: number;
     complemento: string;
 }

@@ -60,5 +60,9 @@ export class MyApp {
   openUserPage() {
     this.nav.push(this.userPage.component);
   }
+
+  sair() {
+    
+  }
 }
 

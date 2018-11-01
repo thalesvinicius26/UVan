@@ -4,34 +4,31 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>
-      Home
+      UVan
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-<!--
-  <ion-card>
-    <img src="{{ mapa }}">
-    <ion-fab right top>
-      <button ion-fab >
-        <ion-icon name="pin"></ion-icon>
-      </button>
-    </ion-fab>
-    <ion-item>
-      <ion-icon name="" item-left large ></ion-icon>
-      <h2></h2>
-      <p></p>
-    </ion-item>
-    <ion-item>
-      <span item-left>time-left</span>
-      <span item-left>distance</span>
-      <button ion-button icon-left clear item-right >
-        <ion-icon name="navigate"></ion-icon>
-          start-navigate-text
-      </button>
-    </ion-item>
-  </ion-card>
--->
-<div #mapa id="mapa"></div>
+  <ion-fab left>
+    <button ion-fab color="light" (click)="localMotorista()"><ion-icon name="locate"></ion-icon></button>
+  </ion-fab>
+
+  <div class="map-wrapper">
+    <mapa></mapa>
+  </div>
+
+  <div class="bottom request-controls">
+    <!--ion-row>
+      <ion-col >
+        <button ion-button block color="danger" (click)="confirmarFalta()">Faltar</button>
+      </ion-col>
+    </ion-row-->
+    <ion-row>
+      <ion-col>
+        <br>
+        <b>SUA CONDUÇÃO ESTÁ A 5 MIN</b>
+      </ion-col>
+    </ion-row>
+  </div>
 </ion-content>

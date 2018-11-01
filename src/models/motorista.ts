@@ -1,12 +1,13 @@
 import { Veiculo } from "./veiculo";
+import { Usuario } from "./usuario";
 
-export class Motorista {
+export class Motorista extends Usuario {
     id: number;
-    num_cnh: string;
-    cat_cnh: string;
-    obs_cnh: string;
-    validade_cnh: string;
+    numeroCnh: string;
+    categoriaCNH: string;
+    obsCnh: string;
+    validaCnh: string;
     regiao: string;
-    faculdade: Array<number>;
-    veiculo: Veiculo = new Veiculo();
+    //faculdade: Array<number>; o serviço será apenas pela região?
+    veiculo: Veiculo = new Veiculo(); // O veiculo não está setado no json
 }
