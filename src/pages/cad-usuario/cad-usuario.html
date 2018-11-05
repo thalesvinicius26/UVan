@@ -36,7 +36,7 @@
       <ion-card-content>
         <ion-item>
           <ion-label floating>E-mail</ion-label>
-          <ion-input type="email" [(ngModel)]="usuario.email" name="email" formControlName="email"></ion-input>
+          <ion-input type="email" [(ngModel)]="usuario.eMail" name="email" formControlName="email"></ion-input>
         </ion-item>
         <div *ngIf="!cadForm.controls.email.valid && (cadForm.controls.email.dirty || cadForm.controls.email.touched)">
           <span class="error" [hidden]="!cadForm.controls.email.errors.required">
@@ -94,20 +94,20 @@
 
         <ion-item>
           <ion-label floating>Gênero</ion-label>
-          <ion-select [(ngModel)]="usuario.genero" name="genero" formControlName="genero" interface="popover">
+          <ion-select [(ngModel)]="usuario.sexo" name="sexo" formControlName="genero" interface="popover">
             <ion-option value="F">Feminino</ion-option>
             <ion-option value="M">Masculino</ion-option>
           </ion-select>
         </ion-item>
         <div *ngIf="!cadForm.controls.genero.valid && (cadForm.controls.genero.dirty || cadForm.controls.genero.touched)">
           <span class="error" [hidden]="!cadForm.controls.genero.errors.required">
-            Selecione seu genero
+            Selecione seu gênero
           </span>
         </div>
 
         <ion-item>
           <ion-label floating>Data Nascimento</ion-label>
-          <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="usuario.dtNascimento" name="dtNascimento" formControlName="dtNascimento"></ion-datetime>
+          <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="usuario.dataNascimento" name="dtNascimento" formControlName="dtNascimento"></ion-datetime>
         </ion-item>
         <div *ngIf="!cadForm.controls.dtNascimento.valid && (cadForm.controls.dtNascimento.dirty || cadForm.controls.dtNascimento.touched)">
           <span class="error" [hidden]="!cadForm.controls.dtNascimento.errors.required">

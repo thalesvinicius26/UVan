@@ -52,11 +52,11 @@ export class CadUsuarioPage {
     });
 
     this.usuario.tipo = this.navParams.get("usuario.tipo");
-    this.usuario.email = this.navParams.get("usuario.email");
+    this.usuario.eMail = this.navParams.get("usuario.eMail");
     this.usuario.senha = this.navParams.get("usuario.senha");
     this.usuario.nome = this.navParams.get("usuario.nome");
-    this.usuario.genero = this.navParams.get("usuario.genero");
-    this.usuario.dtNascimento = this.navParams.get("usuario.dtNascimento");
+    this.usuario.sexo = this.navParams.get("usuario.sexo");
+    this.usuario.dataNascimento = this.navParams.get("usuario.dataNascimento");
     this.usuario.documento = this.navParams.get("usuario.documento");
     this.usuario.telefone = this.navParams.get("usuario.telefone");
   }

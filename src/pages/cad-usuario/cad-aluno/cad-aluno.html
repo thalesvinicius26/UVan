@@ -16,7 +16,7 @@
       <ion-card-content>
         <ion-item>
           <ion-label floating>Universidade</ion-label>
-          <ion-select [(ngModel)]="usuario.aluno.faculdade.id" name="usuario.aluno.faculdade.id" formControlName="faculdade">
+          <ion-select [(ngModel)]="aluno.faculdade" name="faculdade" formControlName="faculdade">
             <ion-option *ngFor="let faculdade of listaFacul"  value="{{ faculdade != null ? faculdade.id : '' }}">{{ faculdade != null ? faculdade.nome : '' }} - {{ faculdade != null ? faculdade.campos : '' }}</ion-option>        
           </ion-select>
         </ion-item>
@@ -28,7 +28,7 @@
 
         <ion-item>
           <ion-label floating>Hora entrada</ion-label>
-          <ion-datetime displayFormat="HH:mm" [(ngModel)]="usuario.aluno.hrEntrada" name="hrEntrada" formControlName="hrEntrada"></ion-datetime>
+          <ion-datetime displayFormat="HH:mm" [(ngModel)]="aluno.hrEntrada" name="hrEntrada" formControlName="hrEntrada"></ion-datetime>
         </ion-item>
         <div *ngIf="!cadForm.controls.hrEntrada.valid && (cadForm.controls.hrEntrada.dirty || cadForm.controls.hrEntrada.touched)">
             <span class="error" [hidden]="!cadForm.controls.hrEntrada.errors.required">
@@ -38,7 +38,7 @@
 
         <ion-item>
             <ion-label floating>Hora saída</ion-label>
-            <ion-datetime displayFormat="HH:mm" [(ngModel)]="usuario.aluno.hrSaida" name="hrSaida" formControlName="hrSaida"></ion-datetime>
+            <ion-datetime displayFormat="HH:mm" [(ngModel)]="aluno.hrSaida" name="hrSaida" formControlName="hrSaida"></ion-datetime>
           </ion-item>
           <div *ngIf="!cadForm.controls.hrSaida.valid && (cadForm.controls.hrSaida.dirty || cadForm.controls.hrSaida.touched)">
               <span class="error" [hidden]="!cadForm.controls.hrSaida.errors.required">

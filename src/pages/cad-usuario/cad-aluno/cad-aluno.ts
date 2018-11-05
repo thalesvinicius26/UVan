@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, Validators } from '@angular/forms';
 
-import { Usuario } from '../../../models/usuario';
+import { Aluno } from '../../../models/aluno';
 import { CadastroProvider } from '../../../providers/cadastro/cadastro';
 import { FaculdadeProvider } from '../../../providers/faculdade/faculdade';
 
@@ -15,7 +15,7 @@ import { FaculdadeProvider } from '../../../providers/faculdade/faculdade';
 export class CadAlunoPage {
 
   private cadForm: any = {};
-  private usuario: Usuario = new Usuario();
+  private aluno: Aluno;
   private listaFacul: any;
 
   constructor(
@@ -30,7 +30,7 @@ export class CadAlunoPage {
       hrEntrada: ['', Validators.required],
       hrSaida: ['', Validators.required],
     });
-    this.usuario = this.navParams.get("usuario");
+    this.aluno = this.navParams.get("usuario");
   }
 
   getFaculdade() {
@@ -40,7 +40,7 @@ export class CadAlunoPage {
   cadastrar() {
     if (this.cadForm.valid) {
 
-      this.cadastroProvider.cadastraAluno(this.usuario);
+      this.cadastroProvider.cadastraAluno(this.aluno);
     }
   }
 

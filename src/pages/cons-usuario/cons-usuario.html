@@ -45,7 +45,7 @@
     </ion-card-header>
     <ion-card-content>
       <h3>Email</h3>
-      <p>{{ usuario?.email }}</p>
+      <p>{{ usuario?.eMail }}</p>
       <br>
       <h3>Senha</h3>
       <p>{{ usuario?.senha }}</p>
@@ -66,10 +66,10 @@
       <p>{{ usuario?.nome }}</p>
       <br>
       <h3>Gênero</h3>
-      <p>{{ usuario?.genero == 'M' ? 'Masculino' : 'Feminino' }}</p>
+      <p>{{ usuario?.sexo == 'M' ? 'Masculino' : 'Feminino' }}</p>
       <br>
       <h3>Data de nascimento</h3>
-      <p>{{ usuario?.dtNascimento | date: "dd/MM/yyyy" }}</p>
+      <p>{{ usuario?.dataNascimento | date: "dd/MM/yyyy" }}</p>
       <br>
       <h3>CPF</h3>
       <p>{{ usuario?.documento }}</p>
@@ -90,13 +90,13 @@
     </ion-card-header>
     <ion-card-content>
       <h3>Universidade</h3>
-      <p>{{ usuario?.aluno.faculdade.nome }} - {{ usuario?.aluno.faculdade.campos }}</p>
+      <p>{{ usuario?.faculdade?.nome }} - {{ usuario?.faculdade?.campos }}</p>
       <br>
       <h3>Hora de entrada</h3>
-      <p>{{ usuario?.aluno.hrEntrada }}</p>
+      <p>{{ usuario?.hrEntrada }}</p>
       <br>
       <h3>Hora de Saída</h3>
-      <p>{{ usuario?.aluno.hrSaida }}</p>
+      <p>{{ usuario?.hrSaida }}</p>
     </ion-card-content>
   </ion-card>
 </ion-content>

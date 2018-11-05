@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, Validators } from '@angular/forms';
 
-import { Usuario } from '../../models/usuario';
 import { CadastroProvider } from '../../providers/cadastro/cadastro';
+import { Motorista } from '../../models/motorista';
 
 @IonicPage()
 @Component({
@@ -13,7 +13,7 @@ import { CadastroProvider } from '../../providers/cadastro/cadastro';
 export class CadVeiculoPage {
 
   private cadForm: any = {};
-  private usuario: Usuario = new Usuario();
+  private motorista: Motorista = new Motorista();
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, private cadastroProvider: CadastroProvider) {
     
@@ -32,14 +32,14 @@ export class CadVeiculoPage {
         Validators.required
       ])]
     });
-    this.usuario = this.navParams.get("usuario");
-    this.usuario.motorista.veiculo.modelo = this.navParams.get("veiculo.modelo");
-    this.usuario.motorista.veiculo.marca = this.navParams.get("veiculo.marca");
-    this.usuario.motorista.veiculo.ano = this.navParams.get("veiculo.ano");
-    this.usuario.motorista.veiculo.cor = this.navParams.get("veiculo.cor");
-    this.usuario.motorista.veiculo.lugares = this.navParams.get("veiculo.lugares");
-    this.usuario.motorista.veiculo.placa = this.navParams.get("veiculo.placa");
-    this.usuario.motorista.veiculo.renavam = this.navParams.get("veiculo.renavam");
+    //this.motorista = this.navParams.get("usuario");
+    this.motorista.veiculo.modelo = this.navParams.get("motorista.veiculo.modelo");
+    this.motorista.veiculo.marca = this.navParams.get("motorista.veiculo.marca");
+    this.motorista.veiculo.ano = this.navParams.get("motorista.veiculo.ano");
+    this.motorista.veiculo.cor = this.navParams.get("motorista.veiculo.cor");
+    this.motorista.veiculo.lugares = this.navParams.get("motorista.veiculo.lugares");
+    this.motorista.veiculo.placa = this.navParams.get("motorista.veiculo.placa");
+    this.motorista.veiculo.renavam = this.navParams.get("motorista.veiculo.renavam");
 
   }
 
@@ -47,7 +47,7 @@ export class CadVeiculoPage {
 
     if (this.cadForm.valid) {
 
-      this.cadastroProvider.cadastroMotorista(this.usuario);
+      this.cadastroProvider.cadastroMotorista(this.motorista);
     }
   }
 

@@ -6,7 +6,6 @@ import { Validators, FormBuilder } from '@angular/forms';
 import { CadUsuarioPage } from '../cad-usuario/cad-usuario';
 import { LoginProvider } from '../../providers/login/login';
 import { HomePage } from '../home/home';
-import { Usuario } from '../../models/usuario';
 
 @IonicPage()
 @Component({
@@ -16,7 +15,7 @@ import { Usuario } from '../../models/usuario';
 export class LoginPage {
 
   private loginForm: any;
-  private usuario: Usuario = new Usuario();
+  private usuario: any = {};
   //private response: any;
 
   constructor(public navCtrl: NavController,

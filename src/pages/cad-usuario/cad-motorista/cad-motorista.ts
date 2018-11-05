@@ -4,7 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 
 import { FaculdadeProvider } from '../../../providers/faculdade/faculdade';
 import { CadVeiculoPage } from '../../cad-veiculo/cad-veiculo';
-import { Usuario } from '../../../models/usuario';
+import { Motorista } from '../../../models/motorista';
 
 
 @IonicPage()
@@ -15,7 +15,7 @@ import { Usuario } from '../../../models/usuario';
 export class CadMotoristaPage {
 
   private cadForm: any = {};
-  private usuario: Usuario = new Usuario();
+  private motorista: Motorista = new Motorista();
   private listaFacul: any;
 
   constructor(
@@ -41,13 +41,13 @@ export class CadMotoristaPage {
       regiao: ['', Validators.required],
       faculdade: ['', Validators.required]
     });
-    this.usuario = this.navParams.get("usuario");
-    this.usuario.motorista.cat_cnh = this.navParams.get("motorista.cat_cnh");
-    this.usuario.motorista.num_cnh = this.navParams.get("motorista.num_cnh");
-    this.usuario.motorista.validade_cnh = this.navParams.get("motorista.valid_cnh");
-    this.usuario.motorista.obs_cnh = this.navParams.get("motorista.obs_cnh");
-    this.usuario.motorista.regiao = this.navParams.get("motorista.regiao");
-    this.usuario.motorista.faculdade = this.navParams.get("faculdade");
+    this.motorista = this.navParams.get("usuario");
+    this.motorista.categoriaCNH = this.navParams.get("motorista.categoriaCNH");
+    this.motorista.numeroCnh = this.navParams.get("motorista.numeroCnh");
+    this.motorista.validaCnh = this.navParams.get("motorista.validaCnh");
+    this.motorista.obsCnh = this.navParams.get("motorista.obsCnh");
+    this.motorista.regiao = this.navParams.get("motorista.regiao");
+    this.motorista.faculdade = this.navParams.get("motorista.faculdade");
   }
 
   getFaculdade() {
@@ -65,7 +65,7 @@ export class CadMotoristaPage {
 
       setTimeout(() => {
         this.navCtrl.push(CadVeiculoPage, {
-          usuario: this.usuario
+          usuario: this.motorista
         });
         loader.dismiss();
       }, 1000);

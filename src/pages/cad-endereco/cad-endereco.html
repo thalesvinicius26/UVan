@@ -29,7 +29,7 @@
 
         <ion-item>
           <ion-label floating>UF</ion-label>
-          <ion-select [(ngModel)]="usuario.endereco.uf" name="uf" formControlName="uf">
+          <ion-select [(ngModel)]="usuario.endereco.estado" name="uf" formControlName="uf">
             <ion-option value="SP" aria-checked="true">SP</ion-option>
           </ion-select>
         </ion-item>
@@ -71,7 +71,7 @@
 
         <ion-item>
             <ion-label floating>Número</ion-label>
-            <ion-input type="number" [(ngModel)]="usuario.endereco.numero" name="numero" formControlName="numero"></ion-input>
+            <ion-input type="number" [(ngModel)]="usuario.endereco.numeroDaCasa" name="numero" formControlName="numero"></ion-input>
         </ion-item>
         <div *ngIf="!cadForm.controls.numero.valid && (cadForm.controls.numero.dirty || cadForm.controls.numero.touched)">
           <span class="error" [hidden]="!cadForm.controls.numero.errors.required">

@@ -17,7 +17,7 @@
     <form [formGroup]="loginForm" (ngSubmit)="login()">
       <ion-item>
         <ion-label floating>E-mail</ion-label>
-        <ion-input type="email" [(ngModel)]="usuario.email" formControlName="email"></ion-input>
+        <ion-input type="email" [(ngModel)]="usuario.eMail" formControlName="email"></ion-input>
       </ion-item>
       <div *ngIf="!loginForm.controls.email.valid && (loginForm.controls.email.dirty || loginForm.controls.email.touched)">
         <span class="error" [hidden]="!loginForm.controls.email.errors.required">

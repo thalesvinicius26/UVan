@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 
-
 @Injectable()
 export class CadastroProvider {
 
@@ -17,7 +16,7 @@ export class CadastroProvider {
 
   cadastroMotorista(dados: any) {
     this.dados = dados;
-    console.log(dados);
+    console.log(this.dados);
     // Implementar conexão com a API
   }
 

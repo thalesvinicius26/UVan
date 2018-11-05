@@ -12,7 +12,6 @@ import { CadUsuarioPage } from '../pages/cad-usuario/cad-usuario';
 import { CadVeiculoPage } from '../pages/cad-veiculo/cad-veiculo';
 import { ConsUsuarioPage } from '../pages/cons-usuario/cons-usuario';
 import { LoginProvider } from '../providers/login/login';
-import { Usuario } from '../models/usuario';
 @Component({
   templateUrl: 'app.html'
 })
@@ -21,7 +20,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any;
-  private usuario: Usuario = new Usuario();
+  private usuario: any;
   userPage: any = {};
   pages: Array<{title: string, component: any}>;
 

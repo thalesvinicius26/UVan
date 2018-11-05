@@ -32,11 +32,11 @@ export class CadEnderecoPage {
     });
     this.usuario = this.navParams.get("usuario");
     this.usuario.endereco.cep = this.navParams.get("usuario.endereco.cep");
-    this.usuario.endereco.uf = this.navParams.get("usuario.endereco.uf");
+    this.usuario.endereco.estado = this.navParams.get("usuario.endereco.estado");
     this.usuario.endereco.cidade = this.navParams.get("usuario.endereco.cidade");
     this.usuario.endereco.bairro = this.navParams.get("usuario.endereco.bairro");
     this.usuario.endereco.rua = this.navParams.get("usuario.endereco.rua");
-    this.usuario.endereco.numero = this.navParams.get("usuario.endereco.numero");
+    this.usuario.endereco.numeroDaCasa = this.navParams.get("usuario.endereco.numeroDaCasa");
     this.usuario.endereco.complemento = this.navParams.get("usuario.endereco.complemento");
   }
 

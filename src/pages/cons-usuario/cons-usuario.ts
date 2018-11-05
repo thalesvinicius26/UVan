@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { Usuario } from '../../models/usuario';
 import { LoginProvider } from '../../providers/login/login';
 
 
@@ -12,7 +11,7 @@ import { LoginProvider } from '../../providers/login/login';
 })
 export class ConsUsuarioPage {
 
-  private usuario: Usuario = new Usuario();
+  private usuario: any = {};
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private loginProvider: LoginProvider) {
     LoginProvider.response.subscribe(usuario => this.usuario = usuario);
@@ -20,8 +19,8 @@ export class ConsUsuarioPage {
 
   ionViewDidLoad() {
     this.loginProvider.getAutenticado();
-    LoginProvider.response.subscribe(usuario => this.usuario = usuario);
-    console.log(this.usuario);
+    //LoginProvider.response.subscribe(usuario => this.usuario = usuario);
+    //console.log(this.usuario);
     //colocar aqui método de buscar infos
   }
 

@@ -8,6 +8,6 @@ export class Motorista extends Usuario {
     obsCnh: string;
     validaCnh: string;
     regiao: string;
-    //faculdade: Array<number>; o serviço será apenas pela região?
+    faculdade: Array<number>;
     veiculo: Veiculo = new Veiculo(); // O veiculo não está setado no json
 }
