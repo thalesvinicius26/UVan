@@ -14,7 +14,6 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { CadUsuarioPage } from '../pages/cad-usuario/cad-usuario';
 import { CadMotoristaPage } from '../pages/cad-usuario/cad-motorista/cad-motorista';
-import { CadEnderecoPage } from '../pages/cad-endereco/cad-endereco';
 import { CadAlunoPage } from '../pages/cad-usuario/cad-aluno/cad-aluno';
 import { CadVeiculoPage } from '../pages/cad-veiculo/cad-veiculo';
 import { ConsUsuarioPage } from '../pages/cons-usuario/cons-usuario';
@@ -24,6 +23,7 @@ import { CadastroProvider } from '../providers/cadastro/cadastro';
 import { FaculdadeProvider } from '../providers/faculdade/faculdade';
 import { MapaComponent } from '../components/mapa/mapa';
 import { ConsultaProvider } from '../providers/consulta/consulta';
+import { CadEnderecoPageModule } from '../pages/cad-endereco/cad-endereco.module';
 
 // Separar em mais módulos para LazyLoading
 @NgModule({
@@ -33,7 +33,6 @@ import { ConsultaProvider } from '../providers/consulta/consulta';
     LoginPage,
     CadUsuarioPage,
     CadMotoristaPage,
-    CadEnderecoPage,
     CadAlunoPage,
     CadVeiculoPage,
     ConsUsuarioPage,
@@ -44,7 +43,8 @@ import { ConsultaProvider } from '../providers/consulta/consulta';
     IonicModule.forRoot(MyApp),
     BrMaskerModule,
     HttpClientModule,
-    HttpModule
+    HttpModule,
+    CadEnderecoPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -53,7 +53,6 @@ import { ConsultaProvider } from '../providers/consulta/consulta';
     LoginPage,
     CadUsuarioPage,
     CadMotoristaPage,
-    CadEnderecoPage,
     CadAlunoPage,
     CadVeiculoPage,
     ConsUsuarioPage,

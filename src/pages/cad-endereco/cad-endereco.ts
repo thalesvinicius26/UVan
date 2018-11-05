@@ -5,6 +5,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { CadMotoristaPage } from '../cad-usuario/cad-motorista/cad-motorista';
 import { Usuario } from '../../models/usuario';
 import { CadAlunoPage } from '../cad-usuario/cad-aluno/cad-aluno';
+import { CepProvider } from '../../providers/cep/cep';
 
 @IonicPage()
 @Component({
@@ -16,7 +17,11 @@ export class CadEnderecoPage {
   private cadForm: any = {};
   private usuario: Usuario = new Usuario();
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, public formBuilder: FormBuilder) {
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public loadingCtrl: LoadingController,
+    public formBuilder: FormBuilder,
+    public cepProvider: CepProvider) {
 
     this.cadForm = formBuilder.group({
       cep: ['', Validators.compose([
@@ -41,7 +46,16 @@ export class CadEnderecoPage {
   }
 
   getEndereco() {
+    if (this.usuario.endereco.cep != undefined) {
+      this.cepProvider.consultaCEP(this.usuario.endereco.cep).subscribe(dados => this.populaDadosForm(dados));
+    }
+  }
 
+  populaDadosForm(dados) {
+    this.usuario.endereco.cidade = dados.localidade;
+    this.usuario.endereco.estado = dados.uf;
+    this.usuario.endereco.bairro = dados.bairro;
+    this.usuario.endereco.rua = dados.logradouro;
   }
 
   proxForm() {

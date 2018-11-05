@@ -16,7 +16,7 @@
       <ion-card-content>
         <ion-item>
           <ion-label floating>CEP</ion-label>
-          <ion-input type="text" [(ngModel)]="usuario.endereco.cep" name="cep" formControlName="cep" [brmasker]="{mask:'00000-000', len: 9, type:'num'}"></ion-input>
+          <ion-input type="text" [(ngModel)]="usuario.endereco.cep" name="cep" formControlName="cep" [brmasker]="{mask:'00000-000', len: 9, type:'num'}" (ionBlur)=getEndereco()></ion-input>
         </ion-item>
         <div *ngIf="!cadForm.controls.cep.valid && (cadForm.controls.cep.dirty || cadForm.controls.cep.touched)">
           <span class="error" [hidden]="!cadForm.controls.cep.errors.required">
@@ -29,43 +29,41 @@
 
         <ion-item>
           <ion-label floating>UF</ion-label>
-          <ion-select [(ngModel)]="usuario.endereco.estado" name="uf" formControlName="uf">
-            <ion-option value="SP" aria-checked="true">SP</ion-option>
-          </ion-select>
+          <ion-input type="text" [(ngModel)]="usuario.endereco.estado" name="uf" formControlName="uf" readonly></ion-input>
         </ion-item>
         <div *ngIf="!cadForm.controls.uf.valid && (cadForm.controls.uf.dirty || cadForm.controls.uf.touched)">
-          <span class="error" [hidden]="!cadForm.controls.uf.errors.required">
-            Selecione a UF do estado
+          <span class="error" [hidden]="!cadForm.controls.cep.errors.required || !cadForm.controls.uf.errors.required">
+            Informe seu CEP
           </span>
         </div>
 
         <ion-item>
           <ion-label floating>Cidade</ion-label>
-          <ion-input type="text" [(ngModel)]="usuario.endereco.cidade" name="cidade" formControlName="cidade"></ion-input>
+          <ion-input type="text" [(ngModel)]="usuario.endereco.cidade" name="cidade" formControlName="cidade" readonly></ion-input>
         </ion-item>
         <div *ngIf="!cadForm.controls.cidade.valid && (cadForm.controls.cidade.dirty || cadForm.controls.cidade.touched)">
-          <span class="error" [hidden]="!cadForm.controls.cidade.errors.required">
-            Digite sua cidade
+          <span class="error" [hidden]="!cadForm.controls.cep.errors.required || !cadForm.controls.cidade.errors.required">
+            Informe seu CEP
           </span>
         </div>
 
         <ion-item>
           <ion-label floating>Bairro</ion-label>
-          <ion-input type="text" [(ngModel)]="usuario.endereco.bairro" name="bairro" formControlName="bairro"></ion-input>
+          <ion-input type="text" [(ngModel)]="usuario.endereco.bairro" name="bairro" formControlName="bairro" readonly></ion-input>
         </ion-item>
         <div *ngIf="!cadForm.controls.bairro.valid && (cadForm.controls.bairro.dirty || cadForm.controls.bairro.touched)">
-          <span class="error" [hidden]="!cadForm.controls.bairro.errors.required">
-            Digite seu bairro
+          <span class="error" [hidden]="!cadForm.controls.cep.errors.required || !cadForm.controls.bairro.errors.required">
+            Informe seu CEP
           </span>
         </div>
 
         <ion-item>
           <ion-label floating>Rua</ion-label>
-          <ion-input type="text" [(ngModel)]="usuario.endereco.rua" name="rua" formControlName="rua"></ion-input>
+          <ion-input type="text" [(ngModel)]="usuario.endereco.rua" name="rua" formControlName="rua" readonly></ion-input>
         </ion-item>
         <div *ngIf="!cadForm.controls.rua.valid && (cadForm.controls.rua.dirty || cadForm.controls.rua.touched)">
-          <span class="error" [hidden]="!cadForm.controls.rua.errors.required">
-            Digite sua rua
+          <span class="error" [hidden]="!cadForm.controls.cep.errors.required || !cadForm.controls.rua.errors.required">
+            Informe seu CEP
           </span>
         </div>
 

@@ -6,4 +6,4 @@ https://imasters.com.br/apis-microsservicos/consumindo-json-via-http-no-angular-
 http://www.fabricadecodigo.com/google-maps-e-geolocalizacao-com-ionic/
 https://console.developers.google.com/
 http://ilovecode.com.br/curso-criando-aplicativo-uber-com-ionic-2/
-Usar melhor o ionViewDidLoad (ou o ngOnInit)
+https://resttesttest.com/
