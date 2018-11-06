@@ -1,0 +1,107 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Endereço</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form [formGroup]="cadForm" (ngSubmit)="onSubmit()">
+    <ion-card>
+      <ion-card-header>
+        Cadastre seu endereço:
+      </ion-card-header>
+      <ion-card-content>
+        <div formGroupName="endereco">
+          <ion-item>
+            <ion-label floating>CEP</ion-label>
+            <ion-input type="text" formControlName="cep" [brmasker]="{mask:'00000-000', len: 9, type:'num'}" (ionBlur)=getEndereco()></ion-input>
+          </ion-item>
+          <!--
+          <div *ngIf="!cadForm.controls.endereco.cep.valid && (cadForm.controls.endereco.cep.dirty || cadForm.controls.endereco.cep.touched)">
+            <span class="error" [hidden]="!cadForm.controls.endereco.cep.errors.required">
+              Digite seu CEP
+            </span>
+            <span class="error" [hidden]="!cadForm.controls.endereco.cep.errors.pattern">
+              <br>CEP inválido
+            </span>
+          </div>
+          -->
+
+          <ion-item>
+            <ion-label floating>UF</ion-label>
+            <ion-input type="text" formControlName="estado" readonly></ion-input>
+          </ion-item>
+          <!--
+          <div *ngIf="!cadForm.controls.endereco.estado.valid && (cadForm.controls.endereco.estado.dirty || cadForm.controls.endereco.estado.touched)">
+            <span class="error" [hidden]="!cadForm.controls.endereco.endereco.cep.errors.required || !cadForm.controls.endereco.estado.errors.required">
+              Informe seu CEP
+            </span>
+          </div>
+          -->
+
+          <ion-item>
+            <ion-label floating>Cidade</ion-label>
+            <ion-input type="text" formControlName="cidade" readonly></ion-input>
+          </ion-item>
+          <!--
+          <div *ngIf="!cadForm.controls.endereco.cidade.valid && (cadForm.controls.endereco.cidade.dirty || cadForm.controls.endereco.cidade.touched)">
+            <span class="error" [hidden]="!cadForm.controls.endereco.cep.errors.required || !cadForm.controls.endereco.cidade.errors.required">
+              Informe seu CEP
+            </span>
+          </div>
+          -->
+
+          <ion-item>
+            <ion-label floating>Bairro</ion-label>
+            <ion-input type="text" formControlName="bairro" readonly></ion-input>
+          </ion-item>
+          <!--
+          <div *ngIf="!cadForm.controls.endereco.bairro.valid && (cadForm.controls.endereco.bairro.dirty || cadForm.controls.endereco.bairro.touched)">
+            <span class="error" [hidden]="!cadForm.controls.endereco.cep.errors.required || !cadForm.controls.endereco.bairro.errors.required">
+              Informe seu CEP
+            </span>
+          </div>
+          -->
+
+          <ion-item>
+            <ion-label floating>Rua</ion-label>
+            <ion-input type="text" formControlName="rua" readonly></ion-input>
+          </ion-item>
+          <!--
+          <div *ngIf="!cadForm.controls.endereco.rua.valid && (cadForm.controls.endereco.rua.dirty || cadForm.controls.endereco.rua.touched)">
+            <span class="error" [hidden]="!cadForm.controls.endereco.cep.errors.required || !cadForm.controls.endereco.rua.errors.required">
+              Informe seu CEP
+            </span>
+          </div>
+          -->
+
+          <ion-item>
+              <ion-label floating>Número</ion-label>
+              <ion-input type="number" formControlName="numeroDaCasa"></ion-input>
+          </ion-item>
+          <!--
+          <div *ngIf="!cadForm.controls.endereco.numeroDaCasa.valid && (cadForm.controls.endereco.numeroDaCasa.dirty || cadForm.controls.endereco.numeroDaCasa.touched)">
+            <span class="error" [hidden]="!cadForm.controls.endereco.numeroDaCasa.errors.required">
+              Digite o número da casa
+            </span>
+          </div>
+          -->
+
+          <ion-item>
+            <ion-label floating>Complemento</ion-label>
+            <ion-textarea formControlName="complemento"></ion-textarea>
+          </ion-item>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <div text-right>
+        <button ion-button icon-only [disabled]="!cadForm.valid">
+              <ion-icon name="add"></ion-icon>
+        </button>
+      </div>
+  </form>
+</ion-content>

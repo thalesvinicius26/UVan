@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
-import { FaculdadeProvider } from '../../../providers/faculdade/faculdade';
+import { FaculdadeProvider } from '../../../../providers/faculdade/faculdade';
 import { CadVeiculoPage } from '../../cad-veiculo/cad-veiculo';
-import { Motorista } from '../../../models/motorista';
+import { Motorista } from '../../../../models/motorista';
 
 
 @IonicPage()
@@ -14,8 +14,8 @@ import { Motorista } from '../../../models/motorista';
 })
 export class CadMotoristaPage {
 
-  private cadForm: any = {};
-  private motorista: Motorista = new Motorista();
+  private cadForm: FormGroup;
+  private motorista: Motorista;
   private listaFacul: any;
 
   constructor(
@@ -27,34 +27,32 @@ export class CadMotoristaPage {
     ) {
 
     this.cadForm = formBuilder.group({
-      cat_cnh: ['', Validators.compose([
+      categoriaCNH: [null, Validators.compose([
         Validators.minLength(1),
         Validators.maxLength(2),
         Validators.required
       ])],
-      num_cnh: ['', Validators.compose([
+      numeroCnh: [null, Validators.compose([
         Validators.pattern(/^[0-9]{11}$/),
         Validators.required
       ])],
-      valid_cnh: ['', Validators.required],
-      obs_cnh: ['', Validators.nullValidator],
-      regiao: ['', Validators.required],
-      faculdade: ['', Validators.required]
+      validaCnh: [null, Validators.required],
+      obsCnh: [null, Validators.nullValidator],
+      regiao: [null, Validators.required],
+      faculdade: [null, Validators.required]
     });
     this.motorista = this.navParams.get("usuario");
-    this.motorista.categoriaCNH = this.navParams.get("motorista.categoriaCNH");
-    this.motorista.numeroCnh = this.navParams.get("motorista.numeroCnh");
-    this.motorista.validaCnh = this.navParams.get("motorista.validaCnh");
-    this.motorista.obsCnh = this.navParams.get("motorista.obsCnh");
-    this.motorista.regiao = this.navParams.get("motorista.regiao");
-    this.motorista.faculdade = this.navParams.get("motorista.faculdade");
   }
 
   getFaculdade() {
     this.listaFacul = this.faculdadeProvider.getListaFacul();
+
+    if (this.listaFacul == null) {
+      alert("Erro ao buscar informações, tente novamente!")
+    }
   }
 
-  proxForm() {
+  onSubmit() {
 
     if (this.cadForm.valid) {
       let loader = this.loadingCtrl.create({
@@ -62,6 +60,7 @@ export class CadMotoristaPage {
       });
 
       loader.present();
+      this.motorista = Object.assign({}, this.motorista, this.cadForm.value);
 
       setTimeout(() => {
         this.navCtrl.push(CadVeiculoPage, {
@@ -75,5 +74,4 @@ export class CadMotoristaPage {
   ionViewDidLoad() {
     this.getFaculdade();
   }
-
 }

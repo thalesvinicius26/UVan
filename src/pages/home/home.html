@@ -15,19 +15,22 @@
   </ion-fab>
 
   <div class="map-wrapper">
-    <mapa></mapa>
+    <mapa [presenca]="presenca"></mapa>
   </div>
 
   <div class="bottom request-controls">
-    <!--ion-row>
-      <ion-col >
-        <button ion-button block color="danger" (click)="confirmarFalta()">Faltar</button>
-      </ion-col>
-    </ion-row-->
     <ion-row>
       <ion-col>
-        <br>
+        <button ion-button block color="danger" (click)="confirmarFalta()" [hidden]="!presenca">Faltar</button>
+        <button ion-button block color="secondary" (click)="confirmarFalta()" [hidden]="presenca">Ir</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col *ngIf="presenca">
         <b>SUA CONDUÇÃO ESTÁ A 5 MIN</b>
+      </ion-col>
+      <ion-col *ngIf="!presenca">
+        <b>MARCADO COMO FALTA</b> 
       </ion-col>
     </ion-row>
   </div>

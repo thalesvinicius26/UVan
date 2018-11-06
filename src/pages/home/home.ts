@@ -8,7 +8,7 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  presenca: boolean;
+  presenca: boolean = true;
 
   constructor(public navCtrl: NavController) {
     this.presenca = true;
@@ -18,6 +18,9 @@ export class HomePage {
   }
 
   localMotorista() {
-    
+  }
+
+  confirmarFalta() {
+    this.presenca = !this.presenca;
   }
 }

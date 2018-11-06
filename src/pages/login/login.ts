@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 import { Validators, FormBuilder } from '@angular/forms';
 
 //import { AutenticacaoProvider } from '../../providers/autenticacao/autenticacao';
-import { CadUsuarioPage } from '../cad-usuario/cad-usuario';
+import { CadUsuarioPage } from '../cadastro/cad-usuario/cad-usuario';
 import { LoginProvider } from '../../providers/login/login';
 import { HomePage } from '../home/home';
 

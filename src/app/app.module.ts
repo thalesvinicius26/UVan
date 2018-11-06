@@ -11,31 +11,19 @@ import { BrMaskerModule } from 'brmasker-ionic-3';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { LoginPage } from '../pages/login/login';
-import { CadUsuarioPage } from '../pages/cad-usuario/cad-usuario';
-import { CadMotoristaPage } from '../pages/cad-usuario/cad-motorista/cad-motorista';
-import { CadAlunoPage } from '../pages/cad-usuario/cad-aluno/cad-aluno';
-import { CadVeiculoPage } from '../pages/cad-veiculo/cad-veiculo';
-import { ConsUsuarioPage } from '../pages/cons-usuario/cons-usuario';
 import { AutenticacaoProvider } from '../providers/autenticacao/autenticacao';
 import { LoginProvider } from '../providers/login/login';
 import { CadastroProvider } from '../providers/cadastro/cadastro';
 import { FaculdadeProvider } from '../providers/faculdade/faculdade';
 import { MapaComponent } from '../components/mapa/mapa';
 import { ConsultaProvider } from '../providers/consulta/consulta';
-import { CadEnderecoPageModule } from '../pages/cad-endereco/cad-endereco.module';
+import { LoginPageModule } from '../pages/login/login.module';
 
 // Separar em mais módulos para LazyLoading
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    LoginPage,
-    CadUsuarioPage,
-    CadMotoristaPage,
-    CadAlunoPage,
-    CadVeiculoPage,
-    ConsUsuarioPage,
     MapaComponent
   ],
   imports: [
@@ -44,18 +32,12 @@ import { CadEnderecoPageModule } from '../pages/cad-endereco/cad-endereco.module
     BrMaskerModule,
     HttpClientModule,
     HttpModule,
-    CadEnderecoPageModule
+    LoginPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
-    LoginPage,
-    CadUsuarioPage,
-    CadMotoristaPage,
-    CadAlunoPage,
-    CadVeiculoPage,
-    ConsUsuarioPage,
     MapaComponent
   ],
   providers: [

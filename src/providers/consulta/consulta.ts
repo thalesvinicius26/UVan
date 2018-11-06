@@ -1,6 +1,4 @@
-
 import { Injectable } from '@angular/core';
-import { Motorista } from '../../models/motorista';
 
 /*
   Generated class for the ConsultaProvider provider.

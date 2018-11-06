@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
-import { Aluno } from '../../../models/aluno';
-import { CadastroProvider } from '../../../providers/cadastro/cadastro';
-import { FaculdadeProvider } from '../../../providers/faculdade/faculdade';
+import { Aluno } from '../../../../models/aluno';
+import { CadastroProvider } from '../../../../providers/cadastro/cadastro';
+import { FaculdadeProvider } from '../../../../providers/faculdade/faculdade';
 
 
 @IonicPage()
@@ -14,7 +14,7 @@ import { FaculdadeProvider } from '../../../providers/faculdade/faculdade';
 })
 export class CadAlunoPage {
 
-  private cadForm: any = {};
+  private cadForm: FormGroup;
   private aluno: Aluno;
   private listaFacul: any;
 
@@ -26,20 +26,24 @@ export class CadAlunoPage {
     private faculdadeProvider: FaculdadeProvider) {
 
     this.cadForm = formBuilder.group({
-      faculdade: ['', Validators.required],
-      hrEntrada: ['', Validators.required],
-      hrSaida: ['', Validators.required],
+      faculdade: [null, Validators.required],
+      hrEntrada: [null, Validators.required],
+      hrSaida: [null, Validators.required],
     });
     this.aluno = this.navParams.get("usuario");
   }
 
   getFaculdade() {
     this.listaFacul = this.faculdadeProvider.getListaFacul();
+
+    if (this.listaFacul == null) {
+      alert("Erro ao buscar informações, tente novamente!")
+    }
   }
 
-  cadastrar() {
+  onSubmit() {
     if (this.cadForm.valid) {
-
+      this.aluno = Object.assign({}, this.aluno, this.cadForm.value);
       this.cadastroProvider.cadastraAluno(this.aluno);
     }
   }
@@ -47,5 +51,4 @@ export class CadAlunoPage {
   ionViewDidLoad() {
     this.getFaculdade();
   }
-
 }

@@ -8,7 +8,7 @@
 
 
 <ion-content padding>
-  <form [formGroup]="cadForm" (ngSubmit)="proxForm()">
+  <form [formGroup]="cadForm" (ngSubmit)="onSubmit()">
     <ion-card>
       <ion-card-header>
         Tipo de Usuário:
@@ -16,13 +16,13 @@
       <ion-card-content>
         <ion-item>
           <ion-label floating>Tipo</ion-label>
-          <ion-select [(ngModel)]="usuario.tipo" name="tipoUsuario" formControlName="tipoUsuario">
+          <ion-select formControlName="tipo">
             <ion-option value="A">Aluno</ion-option>
             <ion-option value="C">Condutor</ion-option>
           </ion-select>
         </ion-item>
-        <div *ngIf="!cadForm.controls.tipoUsuario.valid && (cadForm.controls.tipoUsuario.dirty || cadForm.controls.tipoUsuario.touched)">
-          <span class="error" [hidden]="!cadForm.controls.tipoUsuario.errors.required">
+        <div *ngIf="!cadForm.controls.tipo.valid && (cadForm.controls.tipo.dirty || cadForm.controls.tipo.touched)">
+          <span class="error" [hidden]="!cadForm.controls.tipo.errors.required">
             Selecione o tipo de usuário
           </span>
         </div>
@@ -36,20 +36,20 @@
       <ion-card-content>
         <ion-item>
           <ion-label floating>E-mail</ion-label>
-          <ion-input type="email" [(ngModel)]="usuario.eMail" name="email" formControlName="email"></ion-input>
+          <ion-input type="email" formControlName="eMail"></ion-input>
         </ion-item>
-        <div *ngIf="!cadForm.controls.email.valid && (cadForm.controls.email.dirty || cadForm.controls.email.touched)">
-          <span class="error" [hidden]="!cadForm.controls.email.errors.required">
+        <div *ngIf="!cadForm.controls.eMail.valid && (cadForm.controls.eMail.dirty || cadForm.controls.eMail.touched)">
+          <span class="error" [hidden]="!cadForm.controls.eMail.errors.required">
             Digite seu email
           </span>
-          <span class="error" [hidden]="!cadForm.controls.email.errors.pattern && cadForm.controls.email.errors.minLength">
+          <span class="error" [hidden]="!cadForm.controls.eMail.errors.pattern && cadForm.controls.eMail.errors.minLength">
             O email digitado é inválido
           </span>
         </div>
 
         <ion-item>
           <ion-label floating>Senha</ion-label>
-          <ion-input type="password" [(ngModel)]="usuario.senha" name="senha" formControlName="senha"></ion-input>
+          <ion-input type="password" formControlName="senha"></ion-input>
         </ion-item>
         <div *ngIf="!cadForm.controls.senha.valid && (cadForm.controls.senha.dirty || cadForm.controls.senha.touched)">
           <span class="error" [hidden]="!cadForm.controls.senha.errors.required">
@@ -62,7 +62,7 @@
 
         <ion-item>
           <ion-label floating>Confirme a senha</ion-label>
-          <ion-input type="password" [(ngModel)]="senha2" name="senha2" formControlName="senha2"></ion-input>
+          <ion-input type="password" formControlName="senha2"></ion-input>
         </ion-item>
         <div *ngIf="!cadForm.controls.senha2.valid && (cadForm.controls.senha2.dirty || cadForm.controls.senha2.touched)">
           <span class="error" [hidden]="!cadForm.controls.senha2.errors.required">
@@ -70,7 +70,7 @@
           </span>
         </div>
         <div *ngIf="cadForm.controls.senha2.dirty || cadForm.controls.senha2.touched" >
-          <span class="error" [hidden]="usuario.senha == senha2">
+          <span class="error" [hidden]="senhasIguais()">
             Senhas não são iguais
           </span>
         </div>
@@ -84,7 +84,7 @@
       <ion-card-content>
         <ion-item>
           <ion-label floating>Nome Completo</ion-label>
-          <ion-input type="text" [(ngModel)]="usuario.nome" name="nome" formControlName="nome"></ion-input>
+          <ion-input type="text" formControlName="nome"></ion-input>
         </ion-item>
         <div *ngIf="!cadForm.controls.nome.valid && (cadForm.controls.nome.dirty || cadForm.controls.nome.touched)">
           <span class="error" [hidden]="!cadForm.controls.nome.errors.required && cadForm.controls.nome.errors.minLength">
@@ -94,7 +94,7 @@
 
         <ion-item>
           <ion-label floating>Gênero</ion-label>
-          <ion-select [(ngModel)]="usuario.sexo" name="sexo" formControlName="genero" interface="popover">
+          <ion-select formControlName="genero" interface="popover">
             <ion-option value="F">Feminino</ion-option>
             <ion-option value="M">Masculino</ion-option>
           </ion-select>
@@ -107,17 +107,17 @@
 
         <ion-item>
           <ion-label floating>Data Nascimento</ion-label>
-          <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="usuario.dataNascimento" name="dtNascimento" formControlName="dtNascimento"></ion-datetime>
+          <ion-datetime displayFormat="DD/MM/YYYY" formControlName="dataNascimento"></ion-datetime>
         </ion-item>
-        <div *ngIf="!cadForm.controls.dtNascimento.valid && (cadForm.controls.dtNascimento.dirty || cadForm.controls.dtNascimento.touched)">
-          <span class="error" [hidden]="!cadForm.controls.dtNascimento.errors.required">
+        <div *ngIf="!cadForm.controls.dataNascimento.valid && (cadForm.controls.dataNascimento.dirty || cadForm.controls.dataNascimento.touched)">
+          <span class="error" [hidden]="!cadForm.controls.dataNascimento.errors.required">
             Selecione sua data de nascimento
           </span>
         </div>
 
         <ion-item>
           <ion-label floating>CPF/CNPJ</ion-label>
-          <ion-input type="text" [(ngModel)]="usuario.documento" name="documento" formControlName="documento" [brmasker]="{person: true}"></ion-input>
+          <ion-input type="text" formControlName="documento" [brmasker]="{person: true}"></ion-input>
         </ion-item>
         <div *ngIf="!cadForm.controls.documento.valid && (cadForm.controls.documento.dirty || cadForm.controls.documento.touched)">
           <span class="error" [hidden]="!cadForm.controls.documento.errors.required">
@@ -130,7 +130,7 @@
 
         <ion-item>
           <ion-label floating>Telefone</ion-label>
-          <ion-input type="tel" [(ngModel)]="usuario.telefone" name="telefone" formControlName="telefone" [brmasker]="{phone: true}"></ion-input>
+          <ion-input type="tel" formControlName="telefone" [brmasker]="{phone: true}"></ion-input>
         </ion-item>
         <div *ngIf="!cadForm.controls.telefone.valid && (cadForm.controls.telefone.dirty || cadForm.controls.telefone.touched)">
           <span class="error" [hidden]="!cadForm.controls.telefone.errors.required">
@@ -144,7 +144,7 @@
     </ion-card>
     
     <div text-right>
-      <button ion-button icon-only [disabled]="!cadForm.valid || (usuario.senha != senha2)">
+      <button ion-button icon-only [disabled]="!cadForm.valid || !senhasIguais()">
         <ion-icon name="add"></ion-icon>
       </button>
     </div>

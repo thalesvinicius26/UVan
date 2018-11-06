@@ -8,7 +8,7 @@
 
 
 <ion-content padding>
-  <form [formGroup]="cadForm" (ngSubmit)="proxForm()">
+  <form [formGroup]="cadForm" (ngSubmit)="onSubmit()">
     <ion-card>
       <ion-card-header>
         CNH:
@@ -16,7 +16,7 @@
       <ion-card-content>
         <ion-item>
           <ion-label floating>Categoria</ion-label>
-          <ion-select [(ngModel)]="motorista.categoriaCNH" name="categoriaCNH" formControlName="cat_cnh">
+          <ion-select formControlName="categoriaCNH">
             <ion-option value="C">C</ion-option>
             <ion-option value="D">D</ion-option>
             <ion-option value="E">E</ion-option>
@@ -25,41 +25,41 @@
             <ion-option value="AE">AE</ion-option>
           </ion-select>
         </ion-item>
-        <div *ngIf="!cadForm.controls.cat_cnh.valid && (cadForm.controls.cat_cnh.dirty || cadForm.controls.cat_cnh.touched)">
-          <span class="error" [hidden]="!cadForm.controls.cat_cnh.errors.required">
+        <div *ngIf="!cadForm.controls.categoriaCNH.valid && (cadForm.controls.categoriaCNH.dirty || cadForm.controls.categoriaCNH.touched)">
+          <span class="error" [hidden]="!cadForm.controls.categoriaCNH.errors.required">
             Selecione sua CNH
           </span>
-          <span class="error" [hidden]="cadForm.controls.cat_cnh.errors.minLength && cadForm.controls.cat_cnh.errors.maxLength">
+          <span class="error" [hidden]="cadForm.controls.categoriaCNH.errors.minLength && cadForm.controls.categoriaCNH.errors.maxLength">
             <br>CNH inválida
           </span>
         </div>
 
         <ion-item>
           <ion-label floating>Número</ion-label>
-          <ion-input type="number" [(ngModel)]="motorista.numeroCnh" name="numeroCnh" formControlName="num_cnh" [brmasker]="{mask: '00000000000', len:11, type:'num'}"></ion-input>
+          <ion-input type="number" formControlName="numeroCnh" [brmasker]="{mask: '00000000000', len:11, type:'num'}"></ion-input>
         </ion-item>
-        <div *ngIf="!cadForm.controls.num_cnh.valid && (cadForm.controls.num_cnh.dirty || cadForm.controls.num_cnh.touched)">
-          <span class="error" [hidden]="!cadForm.controls.num_cnh.errors.required">
+        <div *ngIf="!cadForm.controls.numeroCnh.valid && (cadForm.controls.numeroCnh.dirty || cadForm.controls.numeroCnh.touched)">
+          <span class="error" [hidden]="!cadForm.controls.numeroCnh.errors.required">
             Digite o número de sua CNH
           </span>
-          <span class="error" [hidden]="!cadForm.controls.num_cnh.errors.pattern">
+          <span class="error" [hidden]="!cadForm.controls.numeroCnh.errors.pattern">
             <br>Número de CNH inválido
           </span>
         </div>
 
         <ion-item>
           <ion-label floating>Validade</ion-label>
-          <ion-datetime displayFormat="DD/MM/YYYY" min="2018" max="2100" [(ngModel)]="motorista.validaCnh" name="validaCnh" formControlName="valid_cnh"></ion-datetime>
+          <ion-datetime displayFormat="DD/MM/YYYY" min="2018" max="2100" formControlName="validaCnh"></ion-datetime>
         </ion-item>
-        <div *ngIf="!cadForm.controls.valid_cnh.valid && (cadForm.controls.valid_cnh.dirty || cadForm.controls.valid_cnh.touched)">
-          <span class="error" [hidden]="!cadForm.controls.num_cnh.errors.required">
+        <div *ngIf="!cadForm.controls.validaCnh.valid && (cadForm.controls.validaCnh.dirty || cadForm.controls.validaCnh.touched)">
+          <span class="error" [hidden]="!cadForm.controls.validaCnh.errors.required">
             Selecione a data de validade de sua CNH
           </span>
         </div>
 
         <ion-item>
           <ion-label floating>Observação</ion-label>
-          <ion-textarea [(ngModel)]="motorista.obsCnh" name="obsCnh" formControlName="obs_cnh"></ion-textarea>
+          <ion-textarea formControlName="obsCnh"></ion-textarea>
         </ion-item>
       </ion-card-content>
     </ion-card>
@@ -71,7 +71,7 @@
       <ion-card-content>
         <ion-item>
           <ion-label floating>Cidade:</ion-label>
-            <ion-select [(ngModel)]="motorista.regiao" name="regiao" formControlName="regiao">
+            <ion-select formControlName="regiao">
               <ion-option value="Santo André">Santo André</ion-option>
               <ion-option value="São Caetano">São Caetano</ion-option>
               <ion-option value="São Bernardo do Campo">São Bernardo do Campo</ion-option>
@@ -93,7 +93,7 @@
       <ion-card-content>
         <ion-item>
           <ion-label floating>Universidades</ion-label>
-          <ion-select [(ngModel)]="motorista.faculdade" name="faculdade" multiple="true" formControlName="faculdade">
+          <ion-select multiple="true" formControlName="faculdade">
             <ion-option *ngFor="let faculdade of listaFacul"  value="{{ faculdade != null ? faculdade.id : '' }}">{{ faculdade != null ? faculdade.nome : '' }} - {{ faculdade != null ? faculdade.campos : '' }}</ion-option>
           </ion-select>
         </ion-item>

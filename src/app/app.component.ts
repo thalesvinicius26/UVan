@@ -5,12 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
-import { CadEnderecoPage } from '../pages/cad-endereco/cad-endereco';
-import { CadMotoristaPage } from '../pages/cad-usuario/cad-motorista/cad-motorista';
-import { CadAlunoPage } from '../pages/cad-usuario/cad-aluno/cad-aluno';
-import { CadUsuarioPage } from '../pages/cad-usuario/cad-usuario';
-import { CadVeiculoPage } from '../pages/cad-veiculo/cad-veiculo';
-import { ConsUsuarioPage } from '../pages/cons-usuario/cons-usuario';
+import { ConsUsuarioPage } from '../pages/consulta/cons-usuario/cons-usuario';
 import { LoginProvider } from '../providers/login/login';
 @Component({
   templateUrl: 'app.html'
@@ -41,15 +36,17 @@ export class MyApp {
       this.rootPage = LoginPage;
     }
 
-    this.userPage = {title: this.usuario.nome, component: ConsUsuarioPage};
-    this.pages = [
-      {title: 'Login', component: LoginPage},
-      {title: 'Cadastro', component: CadUsuarioPage},
-      {title: 'Endereço', component: CadEnderecoPage},
-      {title: 'Motorista', component: CadMotoristaPage},
-      {title: 'Aluno', component: CadAlunoPage},
-      {title: 'Veículo', component: CadVeiculoPage}
-    ];
+    if (this.usuario.tipo == 'A') {
+      this.userPage = {title: this.usuario.nome, component: ConsUsuarioPage};
+      this.pages = [
+        {title: 'Consulta Motorista', component: ConsUsuarioPage}
+      ];
+    } else if (this.usuario.tipo== 'C') {
+      this.userPage = {title: this.usuario.nome, component: ConsUsuarioPage};
+      this.pages = [
+        {title: 'Consulta Aluno', component: ConsUsuarioPage}
+      ];
+    }
   }
 
   openPage(page){
@@ -60,8 +57,6 @@ export class MyApp {
     this.nav.push(this.userPage.component);
   }
 
-  sair() {
-    
-  }
+  sair() {}
 }
 
