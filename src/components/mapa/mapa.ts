@@ -3,7 +3,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { Observable } from 'rxjs/Observable';
 import { LoadingController } from 'ionic-angular';
 
-declare var google;
+//declare var google;
 
 @Component({
   selector: 'mapa',
@@ -13,29 +13,24 @@ export class MapaComponent implements OnInit {
 
   @ViewChild('mapa') mapaRef: ElementRef;
   @Input() presenca: boolean;
-  public mapa;
+  public mapa: google.maps.Map;
+  public mapIdle: boolean;
 
   constructor(public geolocation: Geolocation,
     public loadingCtrl: LoadingController) {}
 
   ngOnInit() {
     this.mapa = this.carregaMapa();
-    let loader = this.loadingCtrl.create({
-      content: "Carregando"
+    this.addMapEventListeners();
+    
+    this.getLocalizacao().subscribe(localizacao => {
+      this.centralizarMapa(localizacao);
     });
-    loader.present();
-
-    setTimeout(() => {
-      this.getLocalizacao().subscribe(location => {
-        this.mapa.panTo(location);
-      });
-      loader.dismiss();
-    }, 1000);
   }
     
-  private carregaMapa(location = new google.maps.LatLng('-23.550520', '-46.633308')) {
+  private carregaMapa(localizacao = new google.maps.LatLng(-23.550520, -46.633308)) {
     let options = {
-      center: location,
+      center: localizacao,
       zoom: 15,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       disableDefaultUI: true
@@ -46,23 +41,58 @@ export class MapaComponent implements OnInit {
     return mapa;
   }
 
+
   private getLocalizacao() {
+    let loader = this.loadingCtrl.create({
+      content: "Carregando"
+    });
+    loader.present();
+
     let options = {timeout: 10000, enableHighAccuracy: true};
-    let locationsObs = Observable.create(observable => {
+    let localizacaoObs = Observable.create(observable => {
       this.geolocation.getCurrentPosition(options)
         .then((resp) => {
           let lat = resp.coords.latitude;
           let long = resp.coords.longitude;
 
-          let location = new google.maps.LatLng(lat, long);
-          observable.next(location);
+          let localizacao = new google.maps.LatLng(lat, long);
+          observable.next(localizacao);
+
+          setTimeout(() => {
+            loader.dismiss();
+          }, 1000);
         },
         (erro) => {
           console.log('Geolocation erro: ' + erro);
+
+          setTimeout(() => {
+            loader.dismiss();
+          }, 1000);
         })
     })
 
-    return locationsObs;
+    return localizacaoObs;
+  }
+
+
+  private addMapEventListeners() {
+    google.maps.event.addListener(this.mapa, 'dragstart', () => {
+      this.mapIdle = false;
+    })
+    google.maps.event.addListener(this.mapa, 'idle', () => {
+      this.mapIdle = true;
+    })
+  }
+
+  public centralizarMapa(localizacao) {
+
+    if (localizacao) {
+      this.mapa.panTo(localizacao);
+    } else {
+      this.getLocalizacao().subscribe(localizacaoAtual => {
+        this.mapa.panTo(localizacaoAtual);
+      });
+    }
   }
 
 }

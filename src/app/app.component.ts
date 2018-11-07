@@ -7,6 +7,7 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { ConsUsuarioPage } from '../pages/consulta/cons-usuario/cons-usuario';
 import { LoginProvider } from '../providers/login/login';
+import { CadLocalEmbarquePage } from '../pages/cadastro/cad-local-embarque/cad-local-embarque';
 @Component({
   templateUrl: 'app.html'
 })
@@ -39,7 +40,8 @@ export class MyApp {
     if (this.usuario.tipo == 'A') {
       this.userPage = {title: this.usuario.nome, component: ConsUsuarioPage};
       this.pages = [
-        {title: 'Consulta Motorista', component: ConsUsuarioPage}
+        {title: 'Consulta Motorista', component: ConsUsuarioPage},
+        {title: 'Local de Embarque', component: CadLocalEmbarquePage}
       ];
     } else if (this.usuario.tipo== 'C') {
       this.userPage = {title: this.usuario.nome, component: ConsUsuarioPage};

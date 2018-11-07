@@ -9,6 +9,7 @@ import { CadMotoristaPage } from './cad-motorista/cad-motorista';
 import { CadEnderecoPage } from '../cad-endereco/cad-endereco';
 import { CadVeiculoPage } from '../cad-veiculo/cad-veiculo';
 import { CepProvider } from '../../../providers/cep/cep';
+//import { CadLocalEmbarquePage } from '../cad-local-embarque/cad-local-embarque';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { CepProvider } from '../../../providers/cep/cep';
     CadAlunoPage,
     CadMotoristaPage,
     CadEnderecoPage,
-    CadVeiculoPage
+    CadVeiculoPage,
+    //CadLocalEmbarquePage
   ],
   imports: [
     IonicPageModule.forChild(CadUsuarioPage),
@@ -27,7 +29,8 @@ import { CepProvider } from '../../../providers/cep/cep';
     CadAlunoPage,
     CadMotoristaPage,
     CadEnderecoPage,
-    CadVeiculoPage
+    CadVeiculoPage,
+    //CadLocalEmbarquePage
   ],
   providers: [
     CepProvider
