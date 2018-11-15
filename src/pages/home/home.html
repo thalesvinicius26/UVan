@@ -10,11 +10,13 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-fab left>
-    <button ion-fab color="dark" (click)="mapa.centralizarMapa()"><ion-icon name="locate"></ion-icon></button>
-  </ion-fab>
 
   <div class="map-wrapper">
+    <ion-fab left>
+      <button ion-fab color="dark" (click)="mapa.centralizarMapa()">
+        <ion-icon name="locate"></ion-icon>
+      </button>
+    </ion-fab>
     <mapa #mapa [presenca]="presenca"></mapa>
   </div>
 
@@ -30,7 +32,7 @@
         <b>SUA CONDUÇÃO ESTÁ A 5 MIN</b>
       </ion-col>
       <ion-col *ngIf="!presenca">
-        <b>MARCADO COMO FALTA</b> 
+        <b>MARCADO COMO FALTA</b>
       </ion-col>
     </ion-row>
   </div>

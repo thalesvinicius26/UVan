@@ -3,7 +3,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { Observable } from 'rxjs/Observable';
 import { LoadingController } from 'ionic-angular';
 
-//declare var google;
+declare var google;
 
 @Component({
   selector: 'mapa',
@@ -16,7 +16,8 @@ export class MapaComponent implements OnInit {
   public mapa: google.maps.Map;
   public mapIdle: boolean;
 
-  constructor(public geolocation: Geolocation,
+  constructor(
+    public geolocation: Geolocation,
     public loadingCtrl: LoadingController) {}
 
   ngOnInit() {
@@ -27,16 +28,17 @@ export class MapaComponent implements OnInit {
       this.centralizarMapa(localizacao);
     });
   }
-    
+  
+  // createMap()
   private carregaMapa(localizacao = new google.maps.LatLng(-23.550520, -46.633308)) {
-    let options = {
+    let mapOptions = {
       center: localizacao,
       zoom: 15,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       disableDefaultUI: true
     };
 
-    let mapa = new google.maps.Map(this.mapaRef.nativeElement, options);
+    let mapa = new google.maps.Map(this.mapaRef.nativeElement, mapOptions);
 
     return mapa;
   }

@@ -1,15 +1,12 @@
 import { NgModule } from '@angular/core';
 import { MapaComponent } from './mapa/mapa';
-import { LocalEmbarqueComponent } from './local-embarque/local-embarque';
 @NgModule({
 	declarations: [
-		MapaComponent,
-		LocalEmbarqueComponent
+		MapaComponent
 	],
 	imports: [],
 	exports: [
-		MapaComponent,
-		LocalEmbarqueComponent
+		MapaComponent
 	]
 })
 export class ComponentsModule {}

@@ -18,17 +18,13 @@ import { FaculdadeProvider } from '../providers/faculdade/faculdade';
 import { MapaComponent } from '../components/mapa/mapa';
 import { ConsultaProvider } from '../providers/consulta/consulta';
 import { LoginPageModule } from '../pages/login/login.module';
-import { LocalEmbarqueComponent } from '../components/local-embarque/local-embarque';
-import { CadLocalEmbarquePage } from '../pages/cadastro/cad-local-embarque/cad-local-embarque';
 
 // Separar em mais módulos para LazyLoading
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    MapaComponent,
-    LocalEmbarqueComponent,
-    CadLocalEmbarquePage
+    MapaComponent
   ],
   imports: [
     BrowserModule,
@@ -42,9 +38,7 @@ import { CadLocalEmbarquePage } from '../pages/cadastro/cad-local-embarque/cad-l
   entryComponents: [
     MyApp,
     HomePage,
-    MapaComponent,
-    LocalEmbarqueComponent,
-    CadLocalEmbarquePage
+    MapaComponent
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
