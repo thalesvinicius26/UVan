@@ -18,12 +18,14 @@ import { FaculdadeProvider } from '../providers/faculdade/faculdade';
 import { MapaComponent } from '../components/mapa/mapa';
 import { ConsultaProvider } from '../providers/consulta/consulta';
 import { LoginPageModule } from '../pages/login/login.module';
+import { ConsUsuarioPage } from '../pages/consulta/cons-usuario/cons-usuario';
 
 // Separar em mais módulos para LazyLoading
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
+    ConsUsuarioPage,
     MapaComponent
   ],
   imports: [
@@ -38,7 +40,8 @@ import { LoginPageModule } from '../pages/login/login.module';
   entryComponents: [
     MyApp,
     HomePage,
-    MapaComponent
+    MapaComponent,
+    ConsUsuarioPage
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},

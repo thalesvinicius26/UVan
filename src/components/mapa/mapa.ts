@@ -1,9 +1,8 @@
-import { Component, ViewChild, ElementRef, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { GoogleMap, GoogleMaps, Environment } from '@ionic-native/google-maps';
 import { Geolocation } from '@ionic-native/geolocation';
-import { Observable } from 'rxjs/Observable';
 import { LoadingController } from 'ionic-angular';
 
-declare var google;
 
 @Component({
   selector: 'mapa',
@@ -11,39 +10,33 @@ declare var google;
 })
 export class MapaComponent implements OnInit {
 
-  @ViewChild('mapa') mapaRef: ElementRef;
-  @Input() presenca: boolean;
-  public mapa: google.maps.Map;
-  public mapIdle: boolean;
+  mapa: GoogleMap;
 
   constructor(
     public geolocation: Geolocation,
     public loadingCtrl: LoadingController) {}
 
-  ngOnInit() {
-    this.mapa = this.carregaMapa();
-    this.addMapEventListeners();
-    
+  async ngOnInit() {
+    this.carregaMapa();
+    /*
     this.getLocalizacao().subscribe(localizacao => {
       this.centralizarMapa(localizacao);
     });
+    */
   }
   
   // createMap()
-  private carregaMapa(localizacao = new google.maps.LatLng(-23.550520, -46.633308)) {
-    let mapOptions = {
-      center: localizacao,
-      zoom: 15,
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
-      disableDefaultUI: true
-    };
-
-    let mapa = new google.maps.Map(this.mapaRef.nativeElement, mapOptions);
-
-    return mapa;
+  private carregaMapa() {
+    /*
+    Environment.setEnv({
+      'API_KEY_FOR_BROWSER_DEBUG': 'AIzaSyBKa18NEkKmGLnUeMLiyFgW90TChxu0Dko',
+      'API_KEY_FOR_BROWSER_RELEASE': 'AIzaSyBKa18NEkKmGLnUeMLiyFgW90TChxu0Dko'
+    });
+*/
+    this.mapa = GoogleMaps.create('map_canvas');
   }
 
-
+/*
   private getLocalizacao() {
     let loader = this.loadingCtrl.create({
       content: "Carregando"
@@ -75,17 +68,8 @@ export class MapaComponent implements OnInit {
 
     return localizacaoObs;
   }
-
-
-  private addMapEventListeners() {
-    google.maps.event.addListener(this.mapa, 'dragstart', () => {
-      this.mapIdle = false;
-    })
-    google.maps.event.addListener(this.mapa, 'idle', () => {
-      this.mapIdle = true;
-    })
-  }
-
+  */
+/*
   public centralizarMapa(localizacao) {
 
     if (localizacao) {
@@ -96,5 +80,5 @@ export class MapaComponent implements OnInit {
       });
     }
   }
-
+*/
 }
