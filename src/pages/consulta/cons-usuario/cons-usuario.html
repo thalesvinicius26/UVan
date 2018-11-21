@@ -1,7 +1,10 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{ usuario?.nome }}</ion-title>
+    <ion-title>
+      {{ usuario?.nome }}
+    </ion-title>
+      
   </ion-navbar>
 
 </ion-header>
@@ -11,91 +14,62 @@
   <ion-card>
     <img src="../assets/imgs/logo.png"/>
     <ion-card-content>
-      <div text-right>
-        <button ion-button color="dark" small clear icon-only>
-          <ion-icon name="md-create"></ion-icon>
-        </button>
-      </div>
       <ion-card-title>
         {{ usuario?.nome }}
       </ion-card-title>
     </ion-card-content>
   </ion-card>
-
+  
   <ion-card>
-    <div text-right>
-      <button ion-button color="dark" small clear icon-only>
-        <ion-icon name="md-create"></ion-icon>
-      </button>
-    </div>
-    <ion-card-content>
-      <h3>Tipo de usuario</h3>
-      <p>{{ usuario?.tipo == 'A' ? 'Aluno' : 'Condutor' }}</p>
-    </ion-card-content>
-  </ion-card>
-
-  <ion-card>
-    <div text-right>
-      <button ion-button color="dark" small clear icon-only>
-        <ion-icon name="md-create"></ion-icon>
-      </button>
-    </div>
     <ion-card-header>
-      Dados de acesso:
+      <strong>Dados de acesso</strong>
     </ion-card-header>
     <ion-card-content>
-      <h3>Email</h3>
+      <h2>Tipo de usuario</h2>
+      <p>{{ usuario?.tipo == 'A' ? 'Aluno' : 'Condutor' }}</p>
+      <br>
+      <h2>Email</h2>
       <p>{{ usuario?.eMail }}</p>
       <br>
-      <h3>Senha</h3>
+      <h2>Senha</h2>
       <p>{{ usuario?.senha }}</p>
     </ion-card-content>
   </ion-card>
 
   <ion-card>
-    <div text-right>
-      <button ion-button color="dark" small clear icon-only>
-        <ion-icon name="md-create"></ion-icon>
-      </button>
-    </div>
     <ion-card-header>
-      Dados pessoais:
+      <strong>Dados pessoais</strong>
     </ion-card-header>
     <ion-card-content>
-      <h3>Nome</h3>
+      <h2>Nome</h2>
       <p>{{ usuario?.nome }}</p>
       <br>
-      <h3>Gênero</h3>
+      <h2>Gênero</h2>
       <p>{{ usuario?.sexo == 'M' ? 'Masculino' : 'Feminino' }}</p>
       <br>
-      <h3>Data de nascimento</h3>
+      <h2>Data de nascimento</h2>
       <p>{{ usuario?.dataNascimento | date: "dd/MM/yyyy" }}</p>
       <br>
-      <h3>CPF</h3>
+      <h2>CPF</h2>
       <p>{{ usuario?.documento }}</p>
       <br>
-      <h3>Telefone</h3>
+      <h2>Telefone</h2>
       <p>{{ usuario?.telefone }}</p>
     </ion-card-content>
   </ion-card>
 
   <ion-card>
-    <div text-right>
-      <button ion-button color="dark" small clear icon-only>
-        <ion-icon name="md-create"></ion-icon>
-      </button>
-    </div>
     <ion-card-header>
-      Dados Universidade:
+      <strong>Dados Universidade</strong>
     </ion-card-header>
     <ion-card-content>
-      <h3>Universidade</h3>
+      <h2>Universidade</h2>
       <p>{{ usuario?.faculdade?.nome }} - {{ usuario?.faculdade?.campos }}</p>
       <br>
-      <h3>Hora de entrada</h3>
+      <h2>Hora de entrada</h2>
       <p>{{ usuario?.hrEntrada }}</p>
       <br>
-      <h3>Hora de Saída</h3>
+      <h2>Hora de Saída</h2>
       <p>{{ usuario?.hrSaida }}</p>
     </ion-card-content>
   </ion-card>

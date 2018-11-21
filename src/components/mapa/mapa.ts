@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GoogleMap, GoogleMaps, Environment } from '@ionic-native/google-maps';
+import { GoogleMap, GoogleMaps, GoogleMapOptions, Marker, GoogleMapsEvent } from '@ionic-native/google-maps';
 import { Geolocation } from '@ionic-native/geolocation';
 import { LoadingController } from 'ionic-angular';
 
@@ -32,10 +32,36 @@ export class MapaComponent implements OnInit {
       'API_KEY_FOR_BROWSER_DEBUG': 'AIzaSyBKa18NEkKmGLnUeMLiyFgW90TChxu0Dko',
       'API_KEY_FOR_BROWSER_RELEASE': 'AIzaSyBKa18NEkKmGLnUeMLiyFgW90TChxu0Dko'
     });
-*/
-    this.mapa = GoogleMaps.create('map_canvas');
-  }
 
+    let options: GoogleMapOptions = {
+      camera: {
+        target: {
+          lat: -23.689842,
+          long: -46.564850
+        },
+        zoom: 15,
+        tilt: 30
+      }
+    };
+    */
+
+    this.mapa = GoogleMaps.create('map_canvas');
+/*
+    let marker: Marker = this.mapa.addMarkerSync({
+      title: 'Ionic',
+      icon: 'blue',
+      animation: 'DROP',
+      position: {
+        lat: -23.689842,
+        lng: -46.564850
+      }
+    });
+
+    marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
+      alert('Clicked');
+    });
+  }
+*/
 /*
   private getLocalizacao() {
     let loader = this.loadingCtrl.create({
@@ -81,4 +107,5 @@ export class MapaComponent implements OnInit {
     }
   }
 */
+  }
 }

@@ -4,19 +4,14 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpModule } from '@angular/http';
 import { Geolocation } from '@ionic-native/geolocation';
+import { GoogleMaps } from '@ionic-native/google-maps';
 
 import { BrMaskerModule } from 'brmasker-ionic-3';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { AutenticacaoProvider } from '../providers/autenticacao/autenticacao';
 import { LoginProvider } from '../providers/login/login';
-import { CadastroProvider } from '../providers/cadastro/cadastro';
-import { FaculdadeProvider } from '../providers/faculdade/faculdade';
-import { MapaComponent } from '../components/mapa/mapa';
-import { ConsultaProvider } from '../providers/consulta/consulta';
 import { LoginPageModule } from '../pages/login/login.module';
 import { ConsUsuarioPage } from '../pages/consulta/cons-usuario/cons-usuario';
 
@@ -25,34 +20,28 @@ import { ConsUsuarioPage } from '../pages/consulta/cons-usuario/cons-usuario';
   declarations: [
     MyApp,
     HomePage,
-    ConsUsuarioPage,
-    MapaComponent
+    ConsUsuarioPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     BrMaskerModule,
     HttpClientModule,
-    HttpModule,
     LoginPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
-    MapaComponent,
     ConsUsuarioPage
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     StatusBar,
     SplashScreen,
-    AutenticacaoProvider,
     LoginProvider,
-    CadastroProvider,
-    FaculdadeProvider,
-    Geolocation,
-    ConsultaProvider
+    GoogleMaps,
+    Geolocation
   ]
 })
 export class AppModule {}

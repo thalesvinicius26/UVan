@@ -20,16 +20,7 @@ export class MyApp {
   pages: Array<{title: string, component: any}>;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private loginProvider: LoginProvider) {
-
-    platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      statusBar.styleDefault();
-      splashScreen.hide();
-    });
-
     LoginProvider.response.subscribe(usuario => this.usuario = usuario);
-
     if (this.loginProvider.getAutenticado()) {
       this.rootPage = HomePage;
     } else {
@@ -47,6 +38,13 @@ export class MyApp {
         {title: 'Consulta Aluno', component: ConsUsuarioPage}
       ];
     }
+
+    platform.ready().then(() => {
+      // Okay, so the platform is ready and our plugins are available.
+      // Here you can do any higher level native things you might need.
+      statusBar.styleDefault();
+      splashScreen.hide();
+    });
   }
 
   openPage(page){
