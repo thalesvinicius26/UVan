@@ -13,9 +13,17 @@
 
   <div #mapa id="map_canvas">
     <ion-fab left>
-      <button ion-fab color="dark" > <!--(click)="mapa.centralizarMapa()"-->
+      <button ion-fab color="dark">
         <ion-icon name="locate"></ion-icon>
       </button>
+      <ion-fab-list>
+        <button ion-fab color="dark" (click)="centralizarMapa()">
+          <ion-icon name="person"></ion-icon>
+        </button>
+        <button ion-fab color="dark" (click)="localMotorista()">
+          <ion-icon name="car"></ion-icon>
+        </button>
+      </ion-fab-list>
     </ion-fab>
   </div>
 
@@ -28,7 +36,7 @@
     </ion-row>
     <ion-row>
       <ion-col *ngIf="presenca">
-        <b>SUA CONDUÇÃO ESTÁ A 5 MIN</b>
+        <b>SUA CONDUÇÃO ESTÁ A CAMINHO</b>
       </ion-col>
       <ion-col *ngIf="!presenca">
         <b>MARCADO COMO FALTA</b>

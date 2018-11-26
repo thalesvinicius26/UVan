@@ -14,13 +14,27 @@ export class MyApp {
   
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any;
+  rootPage: any = HomePage;
   private usuario: any;
   userPage: any = {};
   pages: Array<{title: string, component: any}>;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private loginProvider: LoginProvider) {
+  constructor(
+    platform: Platform, 
+    statusBar: StatusBar, 
+    splashScreen: SplashScreen, 
+    private loginProvider: LoginProvider
+    ) {
+    
+    platform.ready().then(() => {
+      // Okay, so the platform is ready and our plugins are available.
+      // Here you can do any higher level native things you might need.
+      statusBar.styleDefault();
+      splashScreen.hide();
+    });
+
     LoginProvider.response.subscribe(usuario => this.usuario = usuario);
+
     if (this.loginProvider.getAutenticado()) {
       this.rootPage = HomePage;
     } else {
@@ -39,12 +53,6 @@ export class MyApp {
       ];
     }
 
-    platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      statusBar.styleDefault();
-      splashScreen.hide();
-    });
   }
 
   openPage(page){
